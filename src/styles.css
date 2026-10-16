@@ -1503,7 +1503,8 @@ button {
   min-height: 0;
   flex: 1;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: clamp(32px, 5vh, 52px);
   margin: 0 auto;
 }
 
@@ -1513,7 +1514,7 @@ button {
   grid-template-columns: minmax(370px, 0.88fr) minmax(500px, 1.12fr);
   gap: clamp(48px, 8vw, 130px);
   align-items: center;
-  padding: 22px 0 0;
+  padding: 0;
 }
 
 .product-page-hero__copy {
@@ -1536,6 +1537,7 @@ button {
 
 .product-page-hero__copy h1 {
   max-width: 580px;
+  margin-top: 14px;
   font-size: clamp(3.15rem, 5.3vw, 5.3rem);
 }
 
@@ -1549,7 +1551,7 @@ button {
 
 .product-page-hero__copy > p {
   max-width: 465px;
-  margin: 25px 0 0;
+  margin: 20px 0 0;
   color: #626b62;
   font-size: 15px;
   line-height: 1.85;
@@ -1559,7 +1561,7 @@ button {
   display: flex;
   align-items: center;
   gap: 24px;
-  margin-top: 32px;
+  margin-top: 26px;
 }
 
 .product-page-hero__visual {
@@ -1596,7 +1598,7 @@ button {
   display: grid;
   flex-shrink: 0;
   grid-template-columns: repeat(3, 1fr);
-  margin-top: 28px;
+  margin-top: 32px;
   border-top: 1px solid rgba(26, 47, 30, 0.16);
 }
 
@@ -1606,7 +1608,7 @@ button {
   gap: 5px 11px;
   align-content: start;
   min-height: 0;
-  padding: 16px 22px 18px 0;
+  padding: 30px 22px 18px 0;
   border-right: 1px solid rgba(26, 47, 30, 0.16);
 }
 
@@ -2538,7 +2540,11 @@ button {
     flex-direction: column;
     gap: 25px;
     align-items: stretch;
-    padding: 28px 0 0;
+    padding: 0;
+  }
+
+  .product-page-hero__inner {
+    padding-top: 20px;
   }
 
   .product-page-hero__copy {
@@ -2559,13 +2565,13 @@ button {
 
   .product-page-notes {
     grid-template-columns: 1fr;
-    margin-top: 24px;
+    margin-top: 26px;
   }
 
   .product-page-notes > div,
   .product-page-notes > div:not(:first-child) {
     min-height: auto;
-    padding: 18px 0;
+    padding: 26px 0 16px;
     border-right: 0;
     border-bottom: 1px solid rgba(26, 47, 30, 0.16);
   }
