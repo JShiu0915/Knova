@@ -1633,8 +1633,11 @@ button {
 }
 
 .product-page-hero__visual {
+  display: flex;
   min-height: 468px;
-  padding: 36px 23px 28px;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 23px;
   border: 1px solid rgba(26, 48, 31, 0.15);
   border-radius: 16px;
   background: linear-gradient(145deg, rgba(224, 241, 222, 0.92), rgba(236, 246, 234, 0.78));
@@ -1654,8 +1657,24 @@ button {
 
 .product-page-hero__visual .product-sketch,
 .product-page-hero__visual .product-preview--hero {
-  height: 390px;
+  width: 100%;
+  height: min(390px, 100%);
   margin-top: 0;
+}
+
+.product-page-hero__visual .product-preview--hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-page-hero__visual .product-preview--hero .product-preview__image {
+  object-position: center center;
+}
+
+.product-page-hero__visual .product-preview--placeholder {
+  min-height: 0;
+  height: min(390px, 100%);
 }
 
 .product-page-hero__visual .product-sketch--skill,
