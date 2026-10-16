@@ -501,7 +501,6 @@ function HomePage({ navigate }) {
         <div className="hero-cross hero-cross--one" />
         <div className="hero-cross hero-cross--two" />
         <div className="hero-content">
-          <SectionLabel>PRIVATE AI · KNOWLEDGE ASSETS</SectionLabel>
           <h1>
             Knova，让企业知识
             <span>成为持续进化的能力。</span>
