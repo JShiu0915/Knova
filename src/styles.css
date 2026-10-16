@@ -1494,7 +1494,7 @@ button {
 .product-page-hero {
   position: relative;
   overflow: hidden;
-  padding: 135px 40px 0;
+  padding: 94px 40px 0;
   border-bottom: 1px solid #dfdfd9;
   background:
     linear-gradient(rgba(20, 20, 20, 0.035) 1px, transparent 1px),
@@ -1526,8 +1526,8 @@ button {
   display: grid;
   grid-template-columns: minmax(370px, 0.88fr) minmax(500px, 1.12fr);
   gap: clamp(48px, 8vw, 130px);
-  align-items: end;
-  padding: 72px 0 0;
+  align-items: start;
+  padding: 22px 0 0;
 }
 
 .product-page-hero__copy {
@@ -1583,6 +1583,13 @@ button {
   border-bottom: 0;
   border-radius: 16px 16px 0 0;
   background: linear-gradient(145deg, rgba(224, 241, 222, 0.92), rgba(236, 246, 234, 0.78));
+}
+
+@media (min-width: 721px) {
+  .product-page-hero__visual {
+    margin-top: 34px;
+    transform: none;
+  }
 }
 
 .product-page--knode .product-page-hero__visual {
