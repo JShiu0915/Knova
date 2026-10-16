@@ -513,6 +513,18 @@ function SiteHeader({ path, navigate }) {
 }
 
 function HomePage({ navigate }) {
+  const [scrollHintVisible, setScrollHintVisible] = useState(true)
+
+  useEffect(() => {
+    const updateScrollHint = () => {
+      setScrollHintVisible(window.scrollY < 64)
+    }
+
+    updateScrollHint()
+    window.addEventListener('scroll', updateScrollHint, { passive: true })
+    return () => window.removeEventListener('scroll', updateScrollHint)
+  }, [])
+
   return (
     <main>
       <section className="hero" id="top">
@@ -537,7 +549,14 @@ function HomePage({ navigate }) {
             </a>
           </div>
         </div>
-        <a className="hero-scroll-hint" href="#capabilities">
+        <a
+          className={
+            scrollHintVisible
+              ? 'hero-scroll-hint'
+              : 'hero-scroll-hint hero-scroll-hint--hidden'
+          }
+          href="#capabilities"
+        >
           向下探索
           <span className="hero-scroll-hint__icon">
             <ChevronDown />
