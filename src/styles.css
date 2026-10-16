@@ -135,6 +135,15 @@ button {
   position: relative;
 }
 
+.product-menu::after {
+  position: absolute;
+  top: 100%;
+  right: -12px;
+  left: -12px;
+  height: 15px;
+  content: "";
+}
+
 .nav-chevron {
   color: #85857f;
   transition: transform 180ms ease, color 180ms ease;
@@ -2015,6 +2024,10 @@ button {
 
   .product-menu {
     width: 100%;
+  }
+
+  .product-menu::after {
+    display: none;
   }
 
   .product-dropdown {
