@@ -1555,14 +1555,7 @@ button {
   overflow: hidden;
   padding: 78px 40px 0;
   border-bottom: 1px solid #e7e7e2;
-  background:
-    linear-gradient(rgba(19, 19, 19, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(19, 19, 19, 0.055) 1px, transparent 1px),
-    #fbfbf8;
-  background-size:
-    64px 64px,
-    64px 64px,
-    auto;
+  background: #fbfbf8;
 }
 
 .product-page-hero__inner {
@@ -1888,14 +1881,7 @@ button {
   min-height: 590px;
   padding: 136px max(40px, calc((100vw - 1280px) / 2)) 94px;
   border-bottom: 1px solid #e1e1db;
-  background:
-    linear-gradient(rgba(20, 20, 20, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20, 20, 20, 0.055) 1px, transparent 1px),
-    #fbfbf8;
-  background-size:
-    58px 58px,
-    58px 58px,
-    auto;
+  background: #fbfbf8;
 }
 
 .docs-hero .section-label {
