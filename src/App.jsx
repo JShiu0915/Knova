@@ -422,6 +422,12 @@ function SiteHeader({ path, navigate }) {
     setProductsOpen(false)
   }
 
+  const toggleProducts = () => {
+    if (window.matchMedia('(max-width: 720px)').matches) {
+      setProductsOpen((open) => !open)
+    }
+  }
+
   return (
     <header className="site-header">
       <Brand navigate={navigate} onNavigate={closeNavigation} />
@@ -441,7 +447,7 @@ function SiteHeader({ path, navigate }) {
             type="button"
             aria-expanded={productsOpen}
             aria-haspopup="true"
-            onClick={() => setProductsOpen((open) => !open)}
+            onClick={toggleProducts}
           >
             产品
             <Chevron open={productsOpen} />
