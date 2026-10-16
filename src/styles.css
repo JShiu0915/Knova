@@ -1554,25 +1554,14 @@ button {
   flex-direction: column;
   overflow: hidden;
   padding: 78px 40px 0;
-  border-bottom: 1px solid #dfdfd9;
+  border-bottom: 1px solid #e7e7e2;
   background:
-    linear-gradient(rgba(20, 20, 20, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20, 20, 20, 0.035) 1px, transparent 1px),
-    #f4f8f2;
+    linear-gradient(rgba(19, 19, 19, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(19, 19, 19, 0.035) 1px, transparent 1px),
+    #fbfbf8;
   background-size:
-    58px 58px,
-    58px 58px,
-    auto;
-}
-
-.product-page--knode .product-page-hero {
-  background:
-    linear-gradient(rgba(20, 20, 20, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20, 20, 20, 0.035) 1px, transparent 1px),
-    #f4f4ef;
-  background-size:
-    58px 58px,
-    58px 58px,
+    64px 64px,
+    64px 64px,
     auto;
 }
 
@@ -1646,9 +1635,9 @@ button {
 .product-page-hero__visual {
   min-height: 468px;
   padding: 36px 23px 28px;
-  border: 1px solid rgba(26, 48, 31, 0.15);
+  border: 1px solid #e7e7e2;
   border-radius: 16px;
-  background: linear-gradient(145deg, rgba(224, 241, 222, 0.92), rgba(236, 246, 234, 0.78));
+  background: #fbfbf8;
 }
 
 @media (min-width: 721px) {
@@ -1656,11 +1645,6 @@ button {
     margin-top: 0;
     transform: none;
   }
-}
-
-.product-page--knode .product-page-hero__visual {
-  border-color: rgba(45, 45, 42, 0.15);
-  background: linear-gradient(145deg, rgba(237, 237, 229, 0.95), rgba(246, 246, 240, 0.8));
 }
 
 .product-page-hero__visual .product-sketch,
@@ -1679,7 +1663,7 @@ button {
   flex-shrink: 0;
   grid-template-columns: repeat(3, 1fr);
   margin-top: 32px;
-  border-top: 1px solid rgba(26, 47, 30, 0.16);
+  border-top: 1px solid #e7e7e2;
 }
 
 .product-page-notes > div {
@@ -1689,7 +1673,7 @@ button {
   align-content: start;
   min-height: 0;
   padding: 30px 22px 18px 0;
-  border-right: 1px solid rgba(26, 47, 30, 0.16);
+  border-right: 1px solid #e7e7e2;
 }
 
 .product-page-notes > div:not(:first-child) {
@@ -1851,12 +1835,8 @@ button {
   align-items: center;
   justify-content: center;
   padding: 90px 40px;
-  background: #eff5ed;
+  background: #fbfbf8;
   text-align: center;
-}
-
-.product-page--knode .product-page-cta {
-  background: #f0f0eb;
 }
 
 .product-page-cta > p {
@@ -2654,7 +2634,7 @@ button {
     min-height: auto;
     padding: 26px 0 16px;
     border-right: 0;
-    border-bottom: 1px solid rgba(26, 47, 30, 0.16);
+    border-bottom: 1px solid #e7e7e2;
   }
 
   .product-page-notes > div:last-child {
