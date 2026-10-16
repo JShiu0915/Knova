@@ -111,6 +111,7 @@ button {
 
 .main-nav__link,
 .main-nav__product {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -129,6 +130,34 @@ button {
 .main-nav__product:hover,
 .main-nav__product--active {
   color: #101010;
+}
+
+@media (min-width: 721px) {
+  .main-nav__link::after,
+  .main-nav__product::after {
+    position: absolute;
+    right: 0;
+    bottom: -7px;
+    left: 0;
+    height: 1px;
+    background: #328d6a;
+    content: "";
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 180ms ease;
+  }
+
+  .main-nav__link--active::after,
+  .main-nav__product--active::after {
+    transform: scaleX(1);
+  }
+}
+
+@media (min-width: 721px) and (hover: hover) {
+  .main-nav__link:hover::after,
+  .main-nav__product:hover::after {
+    transform: scaleX(1);
+  }
 }
 
 .product-menu {
