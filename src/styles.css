@@ -1635,9 +1635,9 @@ button {
 .product-page-hero__visual {
   min-height: 468px;
   padding: 36px 23px 28px;
-  border: 1px solid #e7e7e2;
+  border: 1px solid rgba(26, 48, 31, 0.15);
   border-radius: 16px;
-  background: #fbfbf8;
+  background: linear-gradient(145deg, rgba(224, 241, 222, 0.92), rgba(236, 246, 234, 0.78));
 }
 
 @media (min-width: 721px) {
@@ -1645,6 +1645,11 @@ button {
     margin-top: 0;
     transform: none;
   }
+}
+
+.product-page--knode .product-page-hero__visual {
+  border-color: rgba(38, 72, 48, 0.14);
+  background: linear-gradient(145deg, rgba(228, 242, 226, 0.95), rgba(238, 248, 236, 0.82));
 }
 
 .product-page-hero__visual .product-sketch,
