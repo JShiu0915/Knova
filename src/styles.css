@@ -1554,10 +1554,9 @@ button {
 
 .product-page-hero__visual {
   min-height: 468px;
-  padding: 36px 23px 0;
+  padding: 36px 23px 28px;
   border: 1px solid rgba(26, 48, 31, 0.15);
-  border-bottom: 0;
-  border-radius: 16px 16px 0 0;
+  border-radius: 16px;
   background: linear-gradient(145deg, rgba(224, 241, 222, 0.92), rgba(236, 246, 234, 0.78));
 }
 
@@ -2534,7 +2533,7 @@ button {
   .product-page-hero__visual {
     width: 100%;
     min-height: 370px;
-    padding: 24px 16px 0;
+    padding: 24px 16px 20px;
   }
 
   .product-page-hero__visual .product-sketch,
@@ -2672,7 +2671,7 @@ button {
 
   .product-page-hero__visual {
     min-height: 274px;
-    padding: 15px 9px 0;
+    padding: 15px 9px 14px;
   }
 
   .product-page-hero__visual .product-sketch,
