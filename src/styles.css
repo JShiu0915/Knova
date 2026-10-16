@@ -335,18 +335,6 @@ button {
   text-align: center;
 }
 
-.hero::before {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: min(1240px, 100%);
-  height: 100%;
-  border-right: 1px solid rgba(25, 25, 25, 0.055);
-  border-left: 1px solid rgba(25, 25, 25, 0.055);
-  content: "";
-  transform: translateX(-50%);
-}
-
 .hero-content {
   position: relative;
   z-index: 1;
