@@ -29,7 +29,7 @@ const productCards = [
 const productPreviewImages = {
   skill: {
     heroSrc: '/images/products/skillnavigator-hero.webp', // '/images/products/skillnavigator-hero.webp'
-    cardSrc: '', // '/images/products/skillnavigator-card.webp'
+    cardSrc: '/images/products/skillnavigator-card.webp', // '/images/products/skillnavigator-card.webp'
     alt: 'SkillNavigator 产品界面截图',
     heroFile: 'public/images/products/skillnavigator-hero.webp',
     cardFile: 'public/images/products/skillnavigator-card.webp',
