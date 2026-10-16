@@ -414,48 +414,6 @@ button {
   line-height: 1;
 }
 
-.hero-meta {
-  position: absolute;
-  z-index: 1;
-  bottom: 28px;
-  left: 50%;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #777772;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  transform: translateX(-50%);
-  white-space: nowrap;
-}
-
-.hero-meta i {
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: #9c9c97;
-}
-
-.hero-stamp {
-  position: absolute;
-  right: max(40px, calc((100vw - 1360px) / 2));
-  bottom: 29px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #8a8a84;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 8px;
-  letter-spacing: 0.08em;
-}
-
-.hero-stamp strong {
-  color: #368e6d;
-  font-size: 13px;
-  font-weight: 500;
-}
-
 .hero-cross {
   position: absolute;
   z-index: 0;
@@ -1921,10 +1879,6 @@ button {
     font-size: clamp(3.05rem, 6vw, 4.9rem);
   }
 
-  .hero-stamp {
-    display: none;
-  }
-
   .manifesto {
     grid-template-columns: minmax(350px, 1fr) minmax(230px, 0.65fr);
     column-gap: 55px;
@@ -2241,17 +2195,6 @@ button {
 
   .text-action {
     font-size: 13px;
-  }
-
-  .hero-meta {
-    bottom: 20px;
-    gap: 8px;
-    font-size: 7px;
-  }
-
-  .hero-meta i:nth-of-type(2),
-  .hero-meta span:last-child {
-    display: none;
   }
 
   .manifesto,

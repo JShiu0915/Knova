@@ -520,18 +520,6 @@ function HomePage({ navigate }) {
             </a>
           </div>
         </div>
-        <div className="hero-meta">
-          <span>SKILLNAVIGATOR</span>
-          <i />
-          <span>KNODE</span>
-          <i />
-          <span>PRIVATE AI SYSTEMS</span>
-        </div>
-        <div className="hero-stamp">
-          <span>KNOWLEDGE</span>
-          <strong>→</strong>
-          <span>CAPABILITY</span>
-        </div>
       </section>
 
       <section className="manifesto" id="capabilities">
