@@ -799,6 +799,85 @@ button {
   color: #292928;
 }
 
+.product-preview {
+  width: 100%;
+  margin: 0;
+}
+
+.product-preview__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top center;
+}
+
+.product-preview--hero {
+  height: 390px;
+}
+
+.product-preview--hero .product-preview__image {
+  border-radius: 10px;
+}
+
+.product-preview--card {
+  height: 272px;
+  margin-top: auto;
+}
+
+.product-preview--card .product-preview__image {
+  border: 1px solid rgba(22, 34, 24, 0.15);
+  border-bottom: 0;
+  border-radius: 12px 12px 0 0;
+  background: #fbfffa;
+  box-shadow: 0 -16px 32px rgba(34, 51, 34, 0.08);
+}
+
+.product-preview--knode.product-preview--card .product-preview__image {
+  border-color: rgba(42, 42, 39, 0.15);
+  background: #fcfcf8;
+  box-shadow: 0 -16px 32px rgba(35, 35, 30, 0.08);
+}
+
+.product-preview--placeholder {
+  display: flex;
+  height: 100%;
+  min-height: 390px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  border: 1px dashed rgba(26, 48, 31, 0.3);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.42);
+  color: #6d756b;
+  text-align: center;
+}
+
+.product-preview__label {
+  color: #4a5a4e;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.product-preview__hint {
+  max-width: 280px;
+  margin: 8px 0 0;
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.product-preview__path {
+  display: block;
+  margin-top: 10px;
+  color: #318c68;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 10px;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
 .product-sketch {
   position: relative;
   width: 100%;
@@ -1584,7 +1663,8 @@ button {
   background: linear-gradient(145deg, rgba(237, 237, 229, 0.95), rgba(246, 246, 240, 0.8));
 }
 
-.product-page-hero__visual .product-sketch {
+.product-page-hero__visual .product-sketch,
+.product-page-hero__visual .product-preview--hero {
   height: 390px;
   margin-top: 0;
 }
@@ -2559,7 +2639,8 @@ button {
 
   .product-page-hero__visual .product-sketch,
   .product-page-hero__visual .product-sketch--skill,
-  .product-page-hero__visual .product-sketch--knode {
+  .product-page-hero__visual .product-sketch--knode,
+  .product-page-hero__visual .product-preview--hero {
     height: 320px;
   }
 
@@ -2697,7 +2778,8 @@ button {
 
   .product-page-hero__visual .product-sketch,
   .product-page-hero__visual .product-sketch--skill,
-  .product-page-hero__visual .product-sketch--knode {
+  .product-page-hero__visual .product-sketch--knode,
+  .product-page-hero__visual .product-preview--hero {
     height: 245px;
   }
 

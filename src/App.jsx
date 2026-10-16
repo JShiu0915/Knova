@@ -25,6 +25,24 @@ const productCards = [
   },
 ]
 
+/** 产品截图：将文件放入 public/images/products/ 后，取消对应 heroSrc / cardSrc 的注释即可 */
+const productPreviewImages = {
+  skill: {
+    heroSrc: '/images/products/skillnavigator-hero.webp', // '/images/products/skillnavigator-hero.webp'
+    cardSrc: '', // '/images/products/skillnavigator-card.webp'
+    alt: 'SkillNavigator 产品界面截图',
+    heroFile: 'public/images/products/skillnavigator-hero.webp',
+    cardFile: 'public/images/products/skillnavigator-card.webp',
+  },
+  knode: {
+    heroSrc: '', // '/images/products/knode-hero.webp'
+    cardSrc: '', // '/images/products/knode-card.webp'
+    alt: 'Knode 产品界面截图',
+    heroFile: 'public/images/products/knode-hero.webp',
+    cardFile: 'public/images/products/knode-card.webp',
+  },
+}
+
 const productDetails = {
   skill: {
     headline: '让组织里的最佳经验，',
@@ -314,6 +332,48 @@ function SectionLabel({ children }) {
   )
 }
 
+function ProductPreview({ type, variant = 'card' }) {
+  const preview = productPreviewImages[type]
+  const src = variant === 'hero' ? preview.heroSrc : preview.cardSrc
+  const fileHint = variant === 'hero' ? preview.heroFile : preview.cardFile
+  const [loadError, setLoadError] = useState(false)
+
+  if (src && !loadError) {
+    return (
+      <figure
+        className={`product-preview product-preview--${type} product-preview--${variant}`}
+      >
+        <img
+          className="product-preview__image"
+          src={src}
+          alt={preview.alt}
+          loading={variant === 'hero' ? 'eager' : 'lazy'}
+          decoding="async"
+          onError={() => setLoadError(true)}
+        />
+      </figure>
+    )
+  }
+
+  if (variant === 'hero') {
+    return (
+      <div
+        className={`product-preview product-preview--${type} product-preview--hero product-preview--placeholder`}
+      >
+        <span className="product-preview__label">产品截图位</span>
+        <p className="product-preview__hint">将截图放入下方路径，并在 App.jsx 中填写 heroSrc</p>
+        <code className="product-preview__path">{fileHint}</code>
+      </div>
+    )
+  }
+
+  if (src && loadError) {
+    return <ProductSketch type={type} />
+  }
+
+  return <ProductSketch type={type} />
+}
+
 function ProductSketch({ type }) {
   if (type === 'skill') {
     return (
@@ -425,7 +485,7 @@ function ProductCard({ product, navigate }) {
         了解 {product.name}
         <Arrow size={16} />
       </AppLink>
-      <ProductSketch type={product.type} />
+      <ProductPreview type={product.type} variant="card" />
     </article>
   )
 }
@@ -720,7 +780,7 @@ function ProductDetailPage({ product }) {
               </div>
             </div>
             <div className="product-page-hero__visual">
-              <ProductSketch type={product.type} />
+              <ProductPreview type={product.type} variant="hero" />
             </div>
           </div>
           <div className="product-page-notes">
