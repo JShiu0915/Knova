@@ -16,6 +16,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px;
 }
 
 body {
@@ -45,18 +46,20 @@ button {
 }
 
 .site-header {
-  position: absolute;
+  position: fixed;
   z-index: 20;
   top: 0;
   right: 0;
   left: 0;
   display: flex;
-  width: min(1360px, calc(100% - 80px));
+  width: 100%;
   height: 78px;
   align-items: center;
   justify-content: space-between;
-  margin: 0 auto;
+  padding: 0 max(40px, calc((100vw - 1360px) / 2));
   border-bottom: 1px solid #e7e7e2;
+  background: rgba(251, 251, 248, 0.92);
+  backdrop-filter: blur(14px);
 }
 
 .brand {
@@ -1302,6 +1305,11 @@ button {
     width: min(100% - 48px, 800px);
   }
 
+  .site-header {
+    width: 100%;
+    padding: 0 24px;
+  }
+
   .main-nav {
     gap: 22px;
   }
@@ -1347,7 +1355,9 @@ button {
   }
 
   .site-header {
+    width: 100%;
     height: 68px;
+    padding: 0 20px;
   }
 
   .brand {
@@ -1562,6 +1572,11 @@ button {
   .private-section,
   .site-footer {
     width: calc(100% - 32px);
+  }
+
+  .site-header {
+    width: 100%;
+    padding: 0 16px;
   }
 
   .hero {
