@@ -1503,16 +1503,17 @@ button {
   min-height: 0;
   flex: 1;
   flex-direction: column;
+  justify-content: center;
   margin: 0 auto;
 }
 
 .product-page-hero__grid {
   display: grid;
-  flex: 1;
+  flex: 0 0 auto;
   grid-template-columns: minmax(370px, 0.88fr) minmax(500px, 1.12fr);
   gap: clamp(48px, 8vw, 130px);
   align-items: center;
-  padding: 22px 0 32px;
+  padding: 22px 0 0;
 }
 
 .product-page-hero__copy {
@@ -1595,7 +1596,7 @@ button {
   display: grid;
   flex-shrink: 0;
   grid-template-columns: repeat(3, 1fr);
-  margin-top: auto;
+  margin-top: 28px;
   border-top: 1px solid rgba(26, 47, 30, 0.16);
 }
 
@@ -1603,8 +1604,9 @@ button {
   display: grid;
   grid-template-columns: 33px 1fr;
   gap: 5px 11px;
-  min-height: 112px;
-  padding: 22px 22px 22px 0;
+  align-content: start;
+  min-height: 0;
+  padding: 16px 22px 18px 0;
   border-right: 1px solid rgba(26, 47, 30, 0.16);
 }
 
@@ -2532,11 +2534,11 @@ button {
 
   .product-page-hero__grid {
     display: flex;
-    flex: 1;
+    flex: 0 0 auto;
     flex-direction: column;
     gap: 25px;
     align-items: stretch;
-    padding: 28px 0 24px;
+    padding: 28px 0 0;
   }
 
   .product-page-hero__copy {
@@ -2557,7 +2559,7 @@ button {
 
   .product-page-notes {
     grid-template-columns: 1fr;
-    margin-top: auto;
+    margin-top: 24px;
   }
 
   .product-page-notes > div,
