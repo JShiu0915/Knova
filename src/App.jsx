@@ -693,20 +693,13 @@ function HomePage({ navigate }) {
   )
 }
 
-function ProductDetailPage({ product, navigate }) {
+function ProductDetailPage({ product }) {
   const detail = productDetails[product.type]
 
   return (
     <main className={`product-page product-page--${product.type}`}>
       <section className="product-page-hero">
         <div className="product-page-hero__inner">
-          <div className="breadcrumb">
-            <AppLink to="/" navigate={navigate}>首页</AppLink>
-            <span>/</span>
-            <span>产品</span>
-            <span>/</span>
-            <strong>{product.name}</strong>
-          </div>
           <div className="product-page-hero__grid">
             <div className="product-page-hero__copy">
               <SectionLabel>{product.category}</SectionLabel>
@@ -792,15 +785,10 @@ function ProductDetailPage({ product, navigate }) {
   )
 }
 
-function DocsPage({ navigate }) {
+function DocsPage() {
   return (
     <main className="docs-page">
       <section className="docs-hero">
-        <div className="breadcrumb">
-          <AppLink to="/" navigate={navigate}>首页</AppLink>
-          <span>/</span>
-          <strong>文档</strong>
-        </div>
         <SectionLabel>KNOVA DOCUMENTATION</SectionLabel>
         <h1>
           从了解产品，
@@ -885,9 +873,9 @@ function App() {
   let page = <HomePage navigate={navigate} />
 
   if (product) {
-    page = <ProductDetailPage product={product} navigate={navigate} />
+    page = <ProductDetailPage product={product} />
   } else if (path === '/docs') {
-    page = <DocsPage navigate={navigate} />
+    page = <DocsPage />
   }
 
   return (

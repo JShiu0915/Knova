@@ -1463,30 +1463,6 @@ button {
   letter-spacing: 0.08em;
 }
 
-.breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  color: #8a8a84;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 9px;
-  letter-spacing: 0.06em;
-}
-
-.breadcrumb a {
-  color: #5e5e58;
-  transition: color 160ms ease;
-}
-
-.breadcrumb a:hover {
-  color: #237452;
-}
-
-.breadcrumb strong {
-  color: #2d2d2a;
-  font-weight: 600;
-}
-
 .product-page {
   background: #fbfbf8;
 }
@@ -1825,7 +1801,7 @@ button {
 }
 
 .docs-hero .section-label {
-  margin-top: 72px;
+  margin-top: 0;
 }
 
 .docs-hero h1 {
@@ -2642,7 +2618,7 @@ button {
   }
 
   .docs-hero .section-label {
-    margin-top: 55px;
+    margin-top: 0;
   }
 
   .docs-hero h1 {
@@ -2678,10 +2654,6 @@ button {
 @media (max-width: 460px) {
   .product-page-hero {
     padding: 94px 16px 0;
-  }
-
-  .breadcrumb {
-    font-size: 8px;
   }
 
   .product-page-hero__copy h1 {
