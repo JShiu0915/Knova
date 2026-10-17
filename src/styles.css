@@ -562,8 +562,8 @@ button {
 }
 
 .manifesto-heading h2 {
-  max-width: 675px;
-  font-size: clamp(2.7rem, 4.6vw, 4.55rem);
+  max-width: none;
+  font-size: clamp(2.1rem, 3.2vw, 2.6rem);
 }
 
 .manifesto-heading h2 span,
@@ -3048,4 +3048,28 @@ button {
   inset: 0;
   z-index: 0;
   pointer-events: none;
+}
+
+/* 首屏底部回归底色：盖住云与星点的裁切，消除与主张区的分界 */
+.hero::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 22%;
+  background: linear-gradient(to bottom, rgba(251, 251, 248, 0), #fbfbf8 88%);
+  pointer-events: none;
+}
+
+@media (max-width: 720px) {
+  .manifesto-heading h2 br {
+    display: none;
+  }
+}
+
+.manifesto-heading h2 .manifesto-em {
+  display: inline;
+  color: #318c68;
+  font-weight: 660;
 }

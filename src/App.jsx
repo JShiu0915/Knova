@@ -750,8 +750,12 @@ function HomePage({ navigate }) {
         <div className="manifesto-heading">
           <SectionLabel>THE KNOVA WAY</SectionLabel>
           <h2>
-            不是把 AI 加进企业，
-            <span>而是把企业的资产接进 AI。</span>
+            为企业提供在<span className="manifesto-em">私有化环境</span>下
+            <br />
+            高效<span className="manifesto-em">沉淀</span>和
+            <span className="manifesto-em">使用</span>知识资产的专业工具
+            <br />
+            探索业务管理与实践的更多可能。
           </h2>
         </div>
         <div className="manifesto-side">
