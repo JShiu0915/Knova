@@ -4,7 +4,7 @@
  * 注意：中文品牌名待商标检索，暂不启用；对外统一使用英文名 + 中文品类描述。
  */
 export const BRAND = {
-  name: 'Knova',
+  name: 'KnowVeil',
   email: 'hello@knova.ai',
   tagline: '知识有据，能力有章。',
   claim: '让 AI 温故，让组织知新。知识不出企业的门，资产越用越厚。',

@@ -73,9 +73,6 @@ export default function HeroParticles() {
       }))
     }
 
-    /* 底部（靠近主张区一侧）渐隐：最后 22% 高度内线性淡出 */
-    const edgeFade = (y) => Math.min(1, Math.max(0, (height - y) / (height * 0.22)))
-
     const resize = () => {
       const rect = canvas.parentElement.getBoundingClientRect()
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
@@ -107,21 +104,20 @@ export default function HeroParticles() {
         const [cr, cg, cb] = p.color
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(${cr},${cg},${cb},${(p.alpha * twinkle * edgeFade(p.y)).toFixed(3)})`
+        ctx.fillStyle = `rgba(${cr},${cg},${cb},${(p.alpha * twinkle).toFixed(3)})`
         ctx.fill()
       }
 
       ctx.lineWidth = 1
       for (let i = 0; i < particles.length; i++) {
         const a = particles[i]
-        const aFade = edgeFade(a.y)
         for (let j = i + 1; j < particles.length; j++) {
           const b = particles[j]
           const dx = a.x - b.x
           const dy = a.y - b.y
           const d2 = dx * dx + dy * dy
           if (d2 > LINK_DIST * LINK_DIST) continue
-          const fade = (1 - Math.sqrt(d2) / LINK_DIST) * Math.min(aFade, edgeFade(b.y))
+          const fade = 1 - Math.sqrt(d2) / LINK_DIST
           ctx.strokeStyle = `rgba(${LINE[0]},${LINE[1]},${LINE[2]},${(0.1 * fade).toFixed(3)})`
           ctx.beginPath()
           ctx.moveTo(a.x, a.y)

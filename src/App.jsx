@@ -111,7 +111,7 @@ const productDetails = {
 const documentGroups = [
   {
     label: 'GETTING STARTED',
-    title: '开始使用 Knova',
+    title: '开始使用 KnowVeil',
     items: ['两个产品怎么配合', '部署在哪、谁维护', '接入常用的 AI 客户端'],
   },
   {
@@ -748,7 +748,7 @@ function HomePage({ navigate }) {
 
       <section className="manifesto" id="capabilities">
         <div className="manifesto-heading">
-          <SectionLabel>THE KNOVA WAY</SectionLabel>
+          <SectionLabel>THE KNOWVEIL WAY</SectionLabel>
           <h2>
             为企业提供在<span className="manifesto-em">私有化环境</span>下
             <br />
@@ -760,7 +760,7 @@ function HomePage({ navigate }) {
         </div>
         <div className="manifesto-side">
           <p>
-            模型会换、会过期。Knova 经营的是两样不会过期的东西：企业知道什么，以及企业会做什么。
+            模型会换、会过期。KnowVeil 经营的是两样不会过期的东西：企业知道什么，以及企业会做什么。
           </p>
           <a className="text-action text-action--line" href="#private-ai">
             了解私有化部署
@@ -892,7 +892,7 @@ function HomePage({ navigate }) {
             <span>始于可控。</span>
           </h2>
           <p>
-            真实的企业 AI，不该以牺牲数据边界为代价。Knova 让安全不是一个附加项，而是产品的形状本身。
+            真实的企业 AI，不该以牺牲数据边界为代价。KnowVeil 让安全不是一个附加项，而是产品的形状本身。
           </p>
           <div className="private-seal">
             <BrandMark />
@@ -921,7 +921,7 @@ function HomePage({ navigate }) {
           <span>成为全组织的能力。</span>
         </h2>
         <p>从一个值得做的场景开始，一起构建企业自己的私有化 AI 路径。</p>
-        <a className="button button--light" href="mailto:hello@knova.ai?subject=Knova%20方案咨询">
+        <a className="button button--light" href="mailto:hello@knova.ai?subject=KnowVeil%20方案咨询">
           预约方案沟通
           <Arrow />
         </a>
@@ -951,7 +951,7 @@ function ProductDetailPage({ product }) {
                   查看核心能力
                   <Arrow />
                 </a>
-                <a className="text-action" href="mailto:hello@knova.ai?subject=Knova%20方案咨询">
+                <a className="text-action" href="mailto:hello@knova.ai?subject=KnowVeil%20方案咨询">
                   预约方案沟通
                   <Arrow size={15} />
                 </a>
@@ -1014,8 +1014,8 @@ function ProductDetailPage({ product }) {
       <section className="product-page-cta">
         <p>{product.name.toUpperCase()} FOR PRIVATE AI</p>
         <h2>从一个真实场景，开始您的企业 AI 路径。</h2>
-        <a className="button button--dark" href="mailto:hello@knova.ai?subject=Knova%20产品咨询">
-          与 Knova 团队沟通
+        <a className="button button--dark" href="mailto:hello@knova.ai?subject=KnowVeil%20产品咨询">
+          与 KnowVeil 团队沟通
           <Arrow />
         </a>
       </section>
@@ -1027,12 +1027,12 @@ function DocsPage() {
   return (
     <main className="docs-page">
       <section className="docs-hero">
-        <SectionLabel>KNOVA DOCUMENTATION</SectionLabel>
+        <SectionLabel>KNOWVEIL DOCUMENTATION</SectionLabel>
         <h1>
           从了解产品，
           <span>到构建企业 AI 能力。</span>
         </h1>
-        <p>这里整理了 Knova 的产品说明、部署准备与使用方法，帮助您的团队更快开始。</p>
+        <p>这里整理了 KnowVeil 的产品说明、部署准备与使用方法，帮助您的团队更快开始。</p>
         <div className="docs-search" aria-label="文档搜索提示">
           <span>⌕</span>
           搜索文档主题
@@ -1053,7 +1053,7 @@ function DocsPage() {
               <ul>
                 {group.items.map((item) => (
                   <li key={item}>
-                    <a href="mailto:hello@knova.ai?subject=Knova%20文档咨询">
+                    <a href="mailto:hello@knova.ai?subject=KnowVeil%20文档咨询">
                       {item}
                       <Arrow size={14} />
                     </a>
@@ -1070,7 +1070,7 @@ function DocsPage() {
           <SectionLabel>NEED HELP?</SectionLabel>
           <h2>找不到需要的内容？</h2>
         </div>
-        <a className="button button--dark" href="mailto:hello@knova.ai?subject=Knova%20文档咨询">
+        <a className="button button--dark" href="mailto:hello@knova.ai?subject=KnowVeil%20文档咨询">
           联系我们
           <Arrow />
         </a>
