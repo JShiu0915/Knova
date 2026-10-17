@@ -252,19 +252,53 @@ function normalisePath(pathname) {
   return path || '/'
 }
 
+const BASE_URL = import.meta.env.BASE_URL
+
+function toAppPath(pathname) {
+  const base = BASE_URL.replace(/\/$/, '')
+  let path = pathname
+
+  if (base && (path === base || path.startsWith(`${base}/`))) {
+    path = path.slice(base.length) || '/'
+  }
+
+  return normalisePath(path)
+}
+
+function toHref(appPath) {
+  const path = normalisePath(appPath)
+
+  if (path === '/') {
+    return BASE_URL.endsWith('/') ? BASE_URL : `${BASE_URL}/`
+  }
+
+  const base = BASE_URL.replace(/\/$/, '')
+  return `${base}${path}`
+}
+
+function publicAsset(path) {
+  if (!path) {
+    return ''
+  }
+
+  return `${BASE_URL}${path.replace(/^\//, '')}`
+}
+
 function useAppRoute() {
-  const [path, setPath] = useState(() => normalisePath(window.location.pathname))
+  const [path, setPath] = useState(() => toAppPath(window.location.pathname))
 
   useEffect(() => {
-    const updatePath = () => setPath(normalisePath(window.location.pathname))
+    const updatePath = () => setPath(toAppPath(window.location.pathname))
     window.addEventListener('popstate', updatePath)
     return () => window.removeEventListener('popstate', updatePath)
   }, [])
 
   const navigate = (to) => {
     const target = normalisePath(to)
-    if (target !== normalisePath(window.location.pathname)) {
-      window.history.pushState({}, '', target)
+    const href = toHref(target)
+
+    if (target !== toAppPath(window.location.pathname)) {
+      window.history.pushState({}, '', href)
     }
     setPath(target)
     window.scrollTo({ top: 0, behavior: 'auto' })
@@ -292,7 +326,7 @@ function AppLink({ to, navigate, onNavigate, children, ...props }) {
   }
 
   return (
-    <a href={to} onClick={handleClick} {...props}>
+    <a href={toHref(to)} onClick={handleClick} {...props}>
       {children}
     </a>
   )
@@ -335,17 +369,18 @@ function SectionLabel({ children }) {
 function ProductPreview({ type, variant = 'card' }) {
   const preview = productPreviewImages[type]
   const src = variant === 'hero' ? preview.heroSrc : preview.cardSrc
+  const resolvedSrc = publicAsset(src)
   const fileHint = variant === 'hero' ? preview.heroFile : preview.cardFile
   const [loadError, setLoadError] = useState(false)
 
-  if (src && !loadError) {
+  if (resolvedSrc && !loadError) {
     return (
       <figure
         className={`product-preview product-preview--${type} product-preview--${variant}`}
       >
         <img
           className="product-preview__image"
-          src={src}
+          src={resolvedSrc}
           alt={preview.alt}
           loading={variant === 'hero' ? 'eager' : 'lazy'}
           decoding="async"
