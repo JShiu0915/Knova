@@ -323,16 +323,22 @@ button {
   justify-content: center;
   overflow: hidden;
   padding: 78px 40px 48px;
-  border-bottom: 1px solid #e7e7e2;
-  background:
-    linear-gradient(rgba(19, 19, 19, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(19, 19, 19, 0.055) 1px, transparent 1px),
-    #fbfbf8;
-  background-size:
-    64px 64px,
-    64px 64px,
-    auto;
+  background: #fbfbf8;
   text-align: center;
+}
+
+/* 网格：仅版心中部可见，向上（header）与向下（主张区）两端淡出 */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(19, 19, 19, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(19, 19, 19, 0.05) 1px, transparent 1px);
+  background-size: 92px 92px;
+  -webkit-mask-image: radial-gradient(ellipse 72% 58% at 50% 45%, #000 30%, transparent 78%);
+  mask-image: radial-gradient(ellipse 72% 58% at 50% 45%, #000 30%, transparent 78%);
+  pointer-events: none;
 }
 
 .hero-content {
@@ -2824,4 +2830,222 @@ button {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ---------------- 同一份真相（Knode 与向量检索的结构差异） ---------------- */
+.shared-section {
+  display: grid;
+  grid-template-columns: minmax(330px, 0.85fr) minmax(500px, 1.15fr);
+  column-gap: clamp(80px, 13vw, 190px);
+  width: min(1280px, calc(100% - 80px));
+  margin: 0 auto;
+  padding: 148px 0;
+  border-top: 1px solid #e0e0da;
+}
+
+.shared-intro h2 {
+  max-width: 470px;
+  margin: 22px 0 0;
+  font-size: clamp(2.7rem, 4vw, 4rem);
+  font-weight: 570;
+  letter-spacing: -0.08em;
+  line-height: 1.16;
+}
+
+.shared-intro h2 span {
+  display: block;
+  color: #318c68;
+}
+
+.shared-intro > p {
+  max-width: 420px;
+  margin: 25px 0 0;
+  color: #666661;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.shared-list {
+  border-top: 1px solid #d9d9d3;
+}
+
+.shared-list article {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 18px;
+  padding: 29px 0 30px;
+  border-bottom: 1px solid #d9d9d3;
+}
+
+.shared-list article > span {
+  color: #92928c;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 10px;
+}
+
+.shared-list h3 {
+  margin: 0;
+  color: #242423;
+  font-size: 19px;
+  font-weight: 560;
+  letter-spacing: -0.055em;
+}
+
+.shared-list p {
+  max-width: 500px;
+  margin: 10px 0 0;
+  color: #70706a;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.shared-list .shared-note {
+  max-width: 520px;
+  margin-top: 22px;
+  padding-left: 72px;
+  color: #98988f;
+  font-size: 12px;
+  line-height: 1.85;
+}
+
+/* ---------------- 客户端兼容带 ---------------- */
+.client-band {
+  display: grid;
+  grid-template-columns: minmax(330px, 0.85fr) minmax(500px, 1.15fr);
+  column-gap: clamp(80px, 13vw, 190px);
+  width: min(1280px, calc(100% - 80px));
+  margin: 0 auto;
+  padding: 96px 0;
+  border-top: 1px solid #e0e0da;
+}
+
+.client-band__intro h2 {
+  max-width: 470px;
+  margin: 22px 0 0;
+  font-size: clamp(1.85rem, 2.6vw, 2.6rem);
+  font-weight: 570;
+  letter-spacing: -0.07em;
+  line-height: 1.24;
+}
+
+.client-band__intro h2 span {
+  display: block;
+  color: #318c68;
+}
+
+.client-group + .client-group {
+  margin-top: 22px;
+}
+
+.client-group__label {
+  margin: 0 0 11px;
+  color: #9a9a93;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+
+.client-group ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.client-group li {
+  padding: 10px 16px;
+  border: 1px solid #deded8;
+  border-radius: 5px;
+  background: #fff;
+  color: #2b2b28;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+}
+
+.client-band__body > p {
+  max-width: 520px;
+  margin: 26px 0 0;
+  color: #70706a;
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+@media (max-width: 1000px) {
+  .shared-section,
+  .client-band {
+    grid-template-columns: 1fr;
+    row-gap: 44px;
+    padding: 96px 0;
+  }
+
+  .shared-intro > p,
+  .client-band__intro h2 {
+    max-width: 560px;
+  }
+}
+
+@media (max-width: 720px) {
+  .shared-section,
+  .client-band {
+    width: calc(100% - 40px);
+    padding: 74px 0;
+  }
+
+  .shared-list article {
+    grid-template-columns: 38px 1fr;
+    gap: 12px;
+    padding: 24px 0 25px;
+  }
+
+  .shared-list h3 {
+    font-size: 17px;
+  }
+
+  .shared-list .shared-note {
+    padding-left: 0;
+  }
+
+  .client-band__intro h2 {
+    font-size: 1.62rem;
+  }
+
+  .client-group li {
+    padding: 9px 13px;
+    font-size: 12px;
+  }
+}
+
+/* 首屏 kicker 与单行主标语 */
+.hero-content .section-label {
+  margin-bottom: 0;
+  color: #328d6a;
+  font-size: 13px;
+  letter-spacing: 0.24em;
+}
+
+.hero-content h1 {
+  margin-top: 30px;
+}
+
+.hero-content .section-label > span {
+  width: 30px;
+  background: #328d6a;
+}
+
+.hero-content h1 span {
+  display: inline;
+}
+
+.hero-title-gap {
+  display: inline-block;
+  width: 0.32em;
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 }

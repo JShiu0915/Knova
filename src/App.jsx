@@ -1,25 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
+
+import { BRAND, PRODUCTS } from './brand'
+
+import HeroParticles from './HeroParticles'
 
 const productCards = [
   {
     index: '01',
-    name: 'SkillNavigator',
-    category: 'Skill 管理平台',
-    title: '把专家经验，变成每个人都能调用的能力。',
+    name: PRODUCTS.skill.name,
+    category: PRODUCTS.skill.kind,
+    title: '让 AI 产出的能力，可被组织信任。',
     description:
-      '将 SOP、业务规则与最佳实践封装为可复用的 AI Skill，让组织能力不再随人流失。',
-    features: ['Skill 资产化', '业务流程编排', '全生命周期治理'],
+      '能力在进入组织之前先过一道检查：不运行其中任何代码，只看内容，给出风险与质量结论；没过关的不会出现在公开列表里。',
+    features: ['发布前先检查', '发出去的版本改不了', '不过关就不公开'],
     type: 'skill',
     route: '/products/skillnavigator',
   },
   {
     index: '02',
-    name: 'Knode',
-    category: '本地知识管理平台',
-    title: '让企业的每一份知识，都有被用好的机会。',
+    name: PRODUCTS.knode.name,
+    category: PRODUCTS.knode.kind,
+    title: '让 AI 读得到你的知识，而知识不出你的边界。',
     description:
-      '连接分散的文档、制度与业务资料，在本地建立可信、可检索、可追溯的知识底座。',
-    features: ['多格式知识接入', '引用可追溯', '权限体系继承'],
+      '企业的知识集中放在自己的机器上，不在我们的云里：看得见、改得动、带得走。AI 用到了哪一份、答得对不对，你随时能核对。',
+    features: ['打开就能看，不藏在黑箱里', '答案能回到原文那一段', '换 AI 不用搬数据'],
     type: 'knode',
     route: '/products/knode',
   },
@@ -45,61 +49,61 @@ const productPreviewImages = {
 
 const productDetails = {
   skill: {
-    headline: '让组织里的最佳经验，',
-    highlight: '被每个人调用。',
+    headline: '让 AI 产出的能力，',
+    highlight: '可被组织信任。',
     intro:
-      'SkillNavigator 将个人与团队的工作方法沉淀为可复用、可治理的 AI Skill，帮助企业把一次次有效实践，转化为长期的组织能力。',
+      'SkillNavigator 是 AI 能力的准入平台。能力在发布时接受一次检查——不会在你的环境里运行，给出风险与质量结论，结论决定它能不能被公开检索到。检查这件事本身，也不会把你的东西带出边界。',
     capabilities: [
       {
         number: '01',
-        title: '把经验封装为 Skill',
-        text: '将 SOP、提示词、业务规则和工具连接器组合为标准化的智能能力。',
+        title: '发布前检查，而不是上传即上架',
+        text: '格式、安全与查毒多道检查一次完成，给出具体问题清单与结论，而不是一句「通过」。',
       },
       {
         number: '02',
-        title: '按业务场景灵活编排',
-        text: '围绕岗位、任务与流程配置调用逻辑，让 Skill 真正服务于日常工作。',
+        title: '结论决定能不能被看到',
+        text: '有高危问题的能力直接拒绝；被拒绝、检查中、检查中断的，一律不出现在公开结果里。',
       },
       {
         number: '03',
-        title: '让每一次迭代可追溯',
-        text: '通过版本、权限与使用记录，持续优化企业已有的最佳实践。',
+        title: '发出去之后不能偷改',
+        text: '一个版本发布出去就是那一份；要改只能发新版本，谁在用什么版本始终清楚。',
       },
     ],
-    steps: ['沉淀专家方法论', '封装为业务 Skill', '按角色授权使用', '从反馈持续迭代'],
+    steps: ['上传能力包', '发布前检查', '按结论决定是否公开', '按版本分发'],
     notes: [
-      ['业务经验', '把隐性知识显性化'],
-      ['Skill 资产', '让能力可以复用'],
-      ['组织协同', '让最佳实践成为标准'],
+      ['检查不运行代码', '只看不跑，不碰你的环境'],
+      ['不依赖外部模型', '可以完全离线，唯一的外部查毒可关'],
+      ['不过关就不公开', '闸门在平台一侧'],
     ],
   },
   knode: {
-    headline: '让企业每一份知识，',
-    highlight: '都成为可靠依据。',
+    headline: '让 AI 读得到你的知识，',
+    highlight: '而知识不出你的边界。',
     intro:
-      'Knode 将散落在文档、项目资料和业务系统中的私有信息整理为可信知识，让团队的每一次检索、问答和决策都建立在可追溯的事实之上。',
+      'Knode 是企业的知识底账：知识集中放在你自己的电脑或服务器上，由人来维护，AI 直接使用。你能随时看到它用了哪些资料、答得对不对——而不是只收到一个看起来很有道理的答案。',
     capabilities: [
       {
         number: '01',
-        title: '统一接入企业知识',
-        text: '支持多格式资料解析与结构化整理，建立清晰、一致的知识脉络。',
+        title: '结构清楚，一眼找得到',
+        text: '按项目与主题分层整理，打开就知道东西放在哪、哪一块还空着。',
       },
       {
         number: '02',
-        title: '让答案有据可查',
-        text: '通过混合检索与引用溯源，在复杂资料中找到可信、可验证的信息。',
+        title: '答案能回到原文',
+        text: 'AI 引用某段内容时，出处会精确到原文的哪一节。要核对，点回去看原文。',
       },
       {
         number: '03',
-        title: '沿用既有权限体系',
-        text: '按组织、角色与知识空间精细控制访问范围，保证信息只被正确的人看到。',
+        title: '改一处，立刻生效',
+        text: '发现写错了，直接改；下一次提问用的就是新内容，不用等同步、不用重新导入。',
       },
     ],
-    steps: ['接入分散资料', '整理为知识空间', '基于引用可信问答', '在业务中持续更新'],
+    steps: ['建好自己的知识目录', '接入常用的 AI', '边用边改，错了就修', '把成熟做法做成能力'],
     notes: [
-      ['本地知识', '让资料留在企业边界内'],
-      ['可信检索', '让结论始终有出处'],
-      ['权限继承', '让知识访问始终可控'],
+      ['东西在你手上', '放在你的机器上，随时能整包带走'],
+      ['改动有记录', '谁在什么时候改了什么，可回溯'],
+      ['换 AI 不搬数据', '常用客户端随便换'],
     ],
   },
 }
@@ -108,58 +112,87 @@ const documentGroups = [
   {
     label: 'GETTING STARTED',
     title: '开始使用 Knova',
-    items: ['产品概览', '私有化部署说明', '企业接入准备清单'],
+    items: ['两个产品怎么配合', '部署在哪、谁维护', '接入常用的 AI 客户端'],
   },
   {
     label: 'SKILLNAVIGATOR',
-    title: 'Skill 管理平台',
-    items: ['Skill 资产化方法', '流程编排指南', '权限与版本治理'],
+    title: '能力的检查与分发',
+    items: ['一个能力包长什么样', '检查规则与结论含义', '版本、标签与下架'],
   },
   {
     label: 'KNODE',
-    title: '本地知识管理平台',
-    items: ['知识接入规范', '可信检索说明', '知识空间与权限'],
+    title: '知识底账怎么用',
+    items: ['知识目录怎么组织', '引用的出处怎么核对', '备份、迁移与对外分享'],
   },
 ]
 
 const journey = [
   {
     number: '01',
-    title: '接入',
-    text: '连接文档、系统数据与业务流程',
+    title: '存',
+    text: '把知识整理进自己的目录，放在自己的机器上',
   },
   {
     number: '02',
-    title: '沉淀',
-    text: '将信息整理为可信的企业知识',
+    title: '取',
+    text: 'AI 来读它该读的部分，不是把整库倒进去',
   },
   {
     number: '03',
-    title: '调用',
-    text: '将经验封装为可复用的 AI Skill',
+    title: '用',
+    text: '推理发生在你选的那款 AI 里，数据不跟着走',
   },
   {
     number: '04',
-    title: '进化',
-    text: '让每一次业务实践反哺组织能力',
+    title: '鉴',
+    text: '把验证过的做法做成能力，检查过再发给全组织',
   },
 ]
 
 const privatePoints = [
   {
     number: '01',
-    title: '数据始终留在您的边界内',
-    text: '支持本地、专有云与隔离网络部署，企业知识、模型选择与访问日志均可控。',
+    title: '东西在你自己的机器上',
+    text: '知识就放在你的电脑或服务器里；断网也能用，也不存在「停用之后取不回来」。',
   },
   {
     number: '02',
-    title: '权限继承您已有的组织体系',
-    text: '按人、角色、空间与数据源精细授权，让每一次回答都有正确的可见范围。',
+    title: '不绑定任何一家 AI',
+    text: '换客户端不用迁移数据，换模型不用重做知识。工具的寿命，不该决定知识资产的寿命。',
   },
   {
     number: '03',
-    title: '从一个场景开始，持续扩展',
-    text: '以开放 API 与标准连接器接入现有系统，逐步建立属于企业自己的 AI 能力网络。',
+    title: '信任来自可以核对，不是来自承诺',
+    text: '能力检查不会运行对方的程序，也不会把它放进你的环境；不过关的能力不会出现在公开列表里。',
+  },
+]
+
+const sharedPoints = [
+  {
+    number: '01',
+    title: '看得见',
+    text: '一次回答用到了哪几份资料，列出来给你看。不满意的部分，你知道该去改哪里。',
+  },
+  {
+    number: '02',
+    title: '改得动',
+    text: '发现写错了，直接改；下一次提问用的就是新内容，不用等同步、不用重新导入。',
+  },
+  {
+    number: '03',
+    title: '查得准',
+    text: '每个结论都能带出处，精确到原文的哪一节。要核对，点回去看原文。',
+  },
+]
+
+const aiClients = [
+  {
+    label: '市面上的 AI 客户端',
+    items: ['CodeBuddy', 'WorkBuddy', 'Cursor', 'Claude'],
+  },
+  {
+    label: '企业自己部署的 AI',
+    items: ['内部 AI 助手', '自建模型网关', '私有化 AI 平台'],
   },
 ]
 
@@ -349,10 +382,10 @@ function Brand({ navigate, onNavigate }) {
       to="/"
       navigate={navigate}
       onNavigate={onNavigate}
-      aria-label="Knova 首页"
+      aria-label={`${BRAND.name} 首页`}
     >
       <BrandMark />
-      <span>knova</span>
+      <span>{BRAND.name.toLowerCase()}</span>
     </AppLink>
   )
 }
@@ -496,6 +529,61 @@ function ProductSketch({ type }) {
   )
 }
 
+function HeroTitle() {
+  const [revealed, setRevealed] = useState(false)
+  const [shift, setShift] = useState(0)
+  const gapRef = useRef(null)
+  const tailRef = useRef(null)
+
+  useLayoutEffect(() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    const measure = () => {
+      if (!gapRef.current || !tailRef.current) return
+      const offset = (gapRef.current.offsetWidth + tailRef.current.offsetWidth) / 2
+      setShift(window.innerWidth >= 720 ? offset : 0)
+    }
+
+    measure()
+    window.addEventListener('resize', measure)
+
+    const timer = setTimeout(() => setRevealed(true), reduced ? 0 : 1000)
+
+    return () => {
+      window.removeEventListener('resize', measure)
+      clearTimeout(timer)
+    }
+  }, [])
+
+  return (
+    <h1
+      style={{
+        transform: revealed ? 'translateX(0)' : `translateX(${shift}px)`,
+        transition: 'transform 850ms cubic-bezier(0.22, 0.61, 0.21, 1)',
+      }}
+    >
+      让 AI 温故
+      <span
+        ref={gapRef}
+        aria-hidden="true"
+        className="hero-title-gap"
+        style={{ display: 'inline-block', width: '0.32em' }}
+      />
+      <span
+        ref={tailRef}
+        style={{
+          opacity: revealed ? 1 : 0,
+          transform: revealed ? 'translateX(0)' : 'translateX(22px)',
+          transition:
+            'opacity 750ms ease 120ms, transform 850ms cubic-bezier(0.22, 0.61, 0.21, 1) 120ms',
+        }}
+      >
+        让组织知新
+      </span>
+    </h1>
+  )
+}
+
 function ProductCard({ product, navigate }) {
   return (
     <article className={`product-card product-card--${product.type}`}>
@@ -625,13 +713,12 @@ function HomePage({ navigate }) {
       <section className="hero" id="top">
         <div className="hero-cross hero-cross--one" />
         <div className="hero-cross hero-cross--two" />
+        <HeroParticles />
         <div className="hero-content">
-          <h1>
-            Knova，让企业知识
-            <span>成为持续进化的能力。</span>
-          </h1>
+          <SectionLabel>SCALE UP KNOWLEDGE THROUGH USE</SectionLabel>
+          <HeroTitle />
           <p className="hero-copy">
-            面向企业私有化 AI 的一体化配套，让知识可信、能力可复用、业务持续向前。
+            知识不出企业的门，资产越用越厚。
           </p>
           <div className="hero-actions">
             <a className="button button--dark" href="#contact">
@@ -664,12 +751,12 @@ function HomePage({ navigate }) {
           <SectionLabel>THE KNOVA WAY</SectionLabel>
           <h2>
             不是把 AI 加进企业，
-            <span>而是让企业知识进入 AI。</span>
+            <span>而是把企业的资产接进 AI。</span>
           </h2>
         </div>
         <div className="manifesto-side">
           <p>
-            Knova 从您的既有知识与流程开始，将信息、经验和决策依据沉淀为可治理、可调用的组织资产。
+            模型会换、会过期。Knova 经营的是两样不会过期的东西：企业知道什么，以及企业会做什么。
           </p>
           <a className="text-action text-action--line" href="#private-ai">
             了解私有化部署
@@ -679,19 +766,46 @@ function HomePage({ navigate }) {
         <div className="asset-strip">
           <div>
             <span>01</span>
-            <strong>企业知识</strong>
-            <p>让数据、文档和经验有统一的归属</p>
+            <strong>私有知识</strong>
+            <p>放在自己机器上的底账，随时翻得到</p>
           </div>
           <div>
             <span>02</span>
-            <strong>AI Skill</strong>
-            <p>让最佳实践变成每个人可用的能力</p>
+            <strong>AI 能力</strong>
+            <p>经审查再分发，版本不可变</p>
           </div>
           <div>
             <span>03</span>
-            <strong>业务价值</strong>
-            <p>让每一次调用都推动真实业务向前</p>
+            <strong>组织资产</strong>
+            <p>模型换代，这两样都还在</p>
           </div>
+        </div>
+      </section>
+
+      <section className="shared-section" id="same-source">
+        <div className="shared-intro">
+          <SectionLabel>CHECK IT YOURSELF</SectionLabel>
+          <h2>
+            AI 答得对不对，
+            <span>你随时能查。</span>
+          </h2>
+          <p>
+            大多数知识库只给你一个答案，不告诉你它依据什么。Knode 把依据一并交出来：用了哪几份资料、出自原文哪里，由你自己判断。
+          </p>
+        </div>
+        <div className="shared-list">
+          {sharedPoints.map((point) => (
+            <article key={point.number}>
+              <span>{point.number}</span>
+              <div>
+                <h3>{point.title}</h3>
+                <p>{point.text}</p>
+              </div>
+            </article>
+          ))}
+          <p className="shared-note">
+            取舍也说清楚：如果只是要「大概那个意思也能搜到」，那不是我们擅长的方向。我们要的是「这一条到底对不对」——在需要担责的场景里，后者更值钱。
+          </p>
         </div>
       </section>
 
@@ -699,9 +813,9 @@ function HomePage({ navigate }) {
         <div className="section-head">
           <div>
             <SectionLabel>PRODUCTS</SectionLabel>
-            <h2>两个产品，一套企业智能体系。</h2>
+            <h2>两个产品，一套企业私有 AI 的底座。</h2>
           </div>
-          <p>从可信的本地知识，到可执行的业务 Skill，为企业建立持续生长的 AI 能力。</p>
+          <p>一个让知识进得来、出不去；一个让能力出得去、回得来。</p>
         </div>
         <div className="product-grid">
           {productCards.map((product) => (
@@ -712,13 +826,13 @@ function HomePage({ navigate }) {
 
       <section className="journey-section">
         <div className="journey-intro">
-          <SectionLabel>FROM KNOWLEDGE TO ACTION</SectionLabel>
+          <SectionLabel>USE MAKES IT GROW</SectionLabel>
           <h2>
             每一次使用，
-            <span>都在让组织变得更强。</span>
+            <span>都在加厚这份资产。</span>
           </h2>
           <p>
-            Knova 让企业在自己的数据边界内，将知识沉淀、能力调用与业务反馈连接为一个持续运转的闭环。
+            存、取、用、鉴是一个循环：用得越多，知识越厚；知识越厚，AI 越好用。而这个循环，发生在你自己的边界内。
           </p>
         </div>
         <ol className="journey-list">
@@ -741,6 +855,31 @@ function HomePage({ navigate }) {
         </div>
       </section>
 
+      <section className="client-band" id="clients">
+        <div className="client-band__intro">
+          <SectionLabel>YOUR AI, NOT OURS</SectionLabel>
+          <h2>
+            不管是哪一款 AI，
+            <span>知识都不用搬家。</span>
+          </h2>
+        </div>
+        <div className="client-band__body">
+          {aiClients.map((group) => (
+            <div className="client-group" key={group.label}>
+              <p className="client-group__label">{group.label}</p>
+              <ul>
+                {group.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          <p>
+            接入方式遵循通用的开放标准，所以新出的客户端、或者企业自己搭的 AI，都不必等我们做适配。工具的寿命，不该决定知识资产的寿命。
+          </p>
+        </div>
+      </section>
+
       <section className="private-section" id="private-ai">
         <div className="private-intro">
           <SectionLabel>PRIVATE BY DESIGN</SectionLabel>
@@ -749,7 +888,7 @@ function HomePage({ navigate }) {
             <span>始于可控。</span>
           </h2>
           <p>
-            真实的企业 AI，不该以牺牲数据边界为代价。Knova 让安全、治理和业务价值从一开始就站在一起。
+            真实的企业 AI，不该以牺牲数据边界为代价。Knova 让安全不是一个附加项，而是产品的形状本身。
           </p>
           <div className="private-seal">
             <BrandMark />
@@ -834,8 +973,8 @@ function ProductDetailPage({ product }) {
         <div className="product-detail-capabilities__head">
           <SectionLabel>WHAT IT ENABLES</SectionLabel>
           <h2>
-            为企业构建可持续的
-            <span>{product.name} 能力。</span>
+            让 {product.name} 成为
+            <span>企业私有 AI 的一块基石。</span>
           </h2>
         </div>
         <div className="product-detail-capability-grid">
@@ -869,7 +1008,7 @@ function ProductDetailPage({ product }) {
       </section>
 
       <section className="product-page-cta">
-        <p>{product.name.toUpperCase()} FOR ENTERPRISE KNOWLEDGE</p>
+        <p>{product.name.toUpperCase()} FOR PRIVATE AI</p>
         <h2>从一个真实场景，开始您的企业 AI 路径。</h2>
         <a className="button button--dark" href="mailto:hello@knova.ai?subject=Knova%20产品咨询">
           与 Knova 团队沟通
@@ -941,7 +1080,7 @@ function SiteFooter({ navigate }) {
     <footer className="site-footer">
       <div className="footer-top">
         <Brand navigate={navigate} />
-        <p>让知识成为企业持续进化的力量。</p>
+        <p>{BRAND.tagline}</p>
         <a href="mailto:hello@knova.ai">
           hello@knova.ai
           <Arrow size={15} />
@@ -954,7 +1093,9 @@ function SiteFooter({ navigate }) {
         <a href="mailto:hello@knova.ai">联系我们</a>
       </div>
       <div className="footer-bottom">
-        <span>© {new Date().getFullYear()} KNOVA. ALL RIGHTS RESERVED.</span>
+        <span>
+          © {new Date().getFullYear()} {BRAND.name.toUpperCase()}. ALL RIGHTS RESERVED.
+        </span>
         <span>PRIVATE AI · KNOWLEDGE ASSETS · HUMAN VALUE</span>
       </div>
     </footer>
