@@ -591,6 +591,7 @@ function ProductCard({ product, navigate, revealDelay = 0 }) {
       as="article"
       className={`product-card product-card--${product.type}`}
       delay={revealDelay}
+      revealEarly
     >
       <div className="product-card__top">
         <span>{product.index}</span>

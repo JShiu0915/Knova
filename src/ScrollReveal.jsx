@@ -59,10 +59,11 @@ export default function ScrollReveal({
       const viewportWidth = window.innerWidth
       const viewportHeight = window.innerHeight
       const headerHeight = document.querySelector('.site-header')?.getBoundingClientRect().height ?? 0
-      const fullyVisible =
+      const entryAllowance = Math.min(40, rect.height * 0.2)
+      const readyToReveal =
         rect.top >= headerHeight &&
         rect.left >= 0 &&
-        rect.bottom <= viewportHeight &&
+        rect.bottom <= viewportHeight + entryAllowance &&
         rect.right <= viewportWidth
       const earlyVisible =
         revealEarly &&
@@ -74,7 +75,7 @@ export default function ScrollReveal({
         rect.top <= headerHeight + viewportHeight * 0.15 &&
         rect.bottom >= viewportHeight * 0.85
 
-      if (fullyVisible || earlyVisible || fallbackVisible) {
+      if (readyToReveal || earlyVisible || fallbackVisible) {
         reveal()
       }
     }
