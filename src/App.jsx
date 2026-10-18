@@ -3,6 +3,7 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { BRAND, PRODUCTS } from './brand'
 
 import HeroParticles from './HeroParticles'
+import ScrollReveal from './ScrollReveal'
 
 const productCards = [
   {
@@ -746,7 +747,7 @@ function HomePage({ navigate }) {
         </a>
       </section>
 
-      <section className="manifesto" id="capabilities">
+      <ScrollReveal as="section" className="manifesto" id="capabilities">
         <div className="manifesto-heading">
           <SectionLabel>THE KNOWVEIL WAY</SectionLabel>
           <h2>
@@ -784,9 +785,9 @@ function HomePage({ navigate }) {
             <p>模型换代，这两样都还在</p>
           </div>
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className="shared-section" id="same-source">
+      <ScrollReveal as="section" className="shared-section" id="same-source">
         <div className="shared-intro">
           <SectionLabel>CHECK IT YOURSELF</SectionLabel>
           <h2>
@@ -811,9 +812,9 @@ function HomePage({ navigate }) {
             取舍也说清楚：如果只是要「大概那个意思也能搜到」，那不是我们擅长的方向。我们要的是「这一条到底对不对」——在需要担责的场景里，后者更值钱。
           </p>
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className="products-section" id="products">
+      <ScrollReveal as="section" className="products-section" id="products">
         <div className="section-head">
           <div>
             <SectionLabel>PRODUCTS</SectionLabel>
@@ -826,9 +827,9 @@ function HomePage({ navigate }) {
             <ProductCard product={product} navigate={navigate} key={product.name} />
           ))}
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className="journey-section">
+      <ScrollReveal as="section" className="journey-section">
         <div className="journey-intro">
           <SectionLabel>USE MAKES IT GROW</SectionLabel>
           <h2>
@@ -857,9 +858,9 @@ function HomePage({ navigate }) {
           <i />
           <span>YOUR AI</span>
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className="client-band" id="clients">
+      <ScrollReveal as="section" className="client-band" id="clients">
         <div className="client-band__intro">
           <SectionLabel>YOUR AI, NOT OURS</SectionLabel>
           <h2>
@@ -882,9 +883,9 @@ function HomePage({ navigate }) {
             接入方式遵循通用的开放标准，所以新出的客户端、或者企业自己搭的 AI，都不必等我们做适配。工具的寿命，不该决定知识资产的寿命。
           </p>
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className="private-section" id="private-ai">
+      <ScrollReveal as="section" className="private-section" id="private-ai">
         <div className="private-intro">
           <SectionLabel>PRIVATE BY DESIGN</SectionLabel>
           <h2>
@@ -910,9 +911,9 @@ function HomePage({ navigate }) {
             </article>
           ))}
         </div>
-      </section>
+      </ScrollReveal>
 
-      <section className="contact-section" id="contact">
+      <ScrollReveal as="section" className="contact-section" id="contact">
         <div className="contact-orbit contact-orbit--one" />
         <div className="contact-orbit contact-orbit--two" />
         <SectionLabel>START WITH ONE REAL SCENARIO</SectionLabel>
@@ -926,7 +927,7 @@ function HomePage({ navigate }) {
           <Arrow />
         </a>
         <small>hello@knova.ai</small>
-      </section>
+      </ScrollReveal>
     </main>
   )
 }
