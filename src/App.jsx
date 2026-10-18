@@ -585,9 +585,13 @@ function HeroTitle() {
   )
 }
 
-function ProductCard({ product, navigate }) {
+function ProductCard({ product, navigate, revealDelay = 0 }) {
   return (
-    <article className={`product-card product-card--${product.type}`}>
+    <ScrollReveal
+      as="article"
+      className={`product-card product-card--${product.type}`}
+      delay={revealDelay}
+    >
       <div className="product-card__top">
         <span>{product.index}</span>
         <p>{product.category}</p>
@@ -610,7 +614,7 @@ function ProductCard({ product, navigate }) {
         <Arrow size={16} />
       </AppLink>
       <ProductPreview type={product.type} variant="card" />
-    </article>
+    </ScrollReveal>
   )
 }
 
@@ -747,8 +751,8 @@ function HomePage({ navigate }) {
         </a>
       </section>
 
-      <ScrollReveal as="section" className="manifesto" id="capabilities">
-        <div className="manifesto-heading">
+      <section className="manifesto" id="capabilities">
+        <ScrollReveal className="manifesto-heading" revealEarly>
           <SectionLabel>THE KNOWVEIL WAY</SectionLabel>
           <h2>
             为企业提供在<span className="manifesto-em">私有化环境</span>下
@@ -758,8 +762,8 @@ function HomePage({ navigate }) {
             <br />
             探索业务管理与实践的更多可能。
           </h2>
-        </div>
-        <div className="manifesto-side">
+        </ScrollReveal>
+        <ScrollReveal className="manifesto-side" delay={180}>
           <p>
             模型会换、会过期。KnowVeil 经营的是两样不会过期的东西：企业知道什么，以及企业会做什么。
           </p>
@@ -767,167 +771,189 @@ function HomePage({ navigate }) {
             了解私有化部署
             <Arrow size={15} />
           </a>
-        </div>
+        </ScrollReveal>
         <div className="asset-strip">
-          <div>
+          <ScrollReveal delay={0}>
             <span>01</span>
             <strong>私有知识</strong>
             <p>放在自己机器上的底账，随时翻得到</p>
-          </div>
-          <div>
+          </ScrollReveal>
+          <ScrollReveal delay={90}>
             <span>02</span>
             <strong>AI 能力</strong>
             <p>经审查再分发，版本不可变</p>
-          </div>
-          <div>
+          </ScrollReveal>
+          <ScrollReveal delay={180}>
             <span>03</span>
             <strong>组织资产</strong>
             <p>模型换代，这两样都还在</p>
-          </div>
+          </ScrollReveal>
         </div>
-      </ScrollReveal>
+      </section>
 
-      <ScrollReveal as="section" className="shared-section" id="same-source">
+      <section className="shared-section" id="same-source">
         <div className="shared-intro">
-          <SectionLabel>CHECK IT YOURSELF</SectionLabel>
-          <h2>
-            AI 答得对不对，
-            <span>你随时能查。</span>
-          </h2>
-          <p>
+          <ScrollReveal className="shared-intro__heading" revealEarly>
+            <SectionLabel>CHECK IT YOURSELF</SectionLabel>
+            <h2>
+              AI 答得对不对，
+              <span>你随时能查。</span>
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal as="p" delay={120}>
             大多数知识库只给你一个答案，不告诉你它依据什么。Knode 把依据一并交出来：用了哪几份资料、出自原文哪里，由你自己判断。
-          </p>
+          </ScrollReveal>
         </div>
         <div className="shared-list">
-          {sharedPoints.map((point) => (
-            <article key={point.number}>
+          {sharedPoints.map((point, index) => (
+            <ScrollReveal as="article" delay={180 + index * 70} key={point.number}>
               <span>{point.number}</span>
               <div>
                 <h3>{point.title}</h3>
                 <p>{point.text}</p>
               </div>
-            </article>
+            </ScrollReveal>
           ))}
-          <p className="shared-note">
+          <ScrollReveal as="p" className="shared-note" delay={180}>
             取舍也说清楚：如果只是要「大概那个意思也能搜到」，那不是我们擅长的方向。我们要的是「这一条到底对不对」——在需要担责的场景里，后者更值钱。
-          </p>
+          </ScrollReveal>
         </div>
-      </ScrollReveal>
+      </section>
 
-      <ScrollReveal as="section" className="products-section" id="products">
+      <section className="products-section" id="products">
         <div className="section-head">
-          <div>
+          <ScrollReveal className="section-head__title" revealEarly>
             <SectionLabel>PRODUCTS</SectionLabel>
             <h2>两个产品，一套企业私有 AI 的底座。</h2>
-          </div>
-          <p>一个让知识进得来、出不去；一个让能力出得去、回得来。</p>
+          </ScrollReveal>
+          <ScrollReveal as="p" delay={120}>一个让知识进得来、出不去；一个让能力出得去、回得来。</ScrollReveal>
         </div>
         <div className="product-grid">
-          {productCards.map((product) => (
-            <ProductCard product={product} navigate={navigate} key={product.name} />
+          {productCards.map((product, index) => (
+            <ProductCard
+              product={product}
+              navigate={navigate}
+              revealDelay={180 + index * 110}
+              key={product.name}
+            />
           ))}
         </div>
-      </ScrollReveal>
+      </section>
 
-      <ScrollReveal as="section" className="journey-section">
+      <section className="journey-section">
         <div className="journey-intro">
-          <SectionLabel>USE MAKES IT GROW</SectionLabel>
-          <h2>
-            每一次使用，
-            <span>都在加厚这份资产。</span>
-          </h2>
-          <p>
+          <ScrollReveal className="journey-intro__heading" revealEarly>
+            <SectionLabel>USE MAKES IT GROW</SectionLabel>
+            <h2>
+              每一次使用，
+              <span>都在加厚这份资产。</span>
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal as="p" delay={120}>
             存、取、用、鉴是一个循环：用得越多，知识越厚；知识越厚，AI 越好用。而这个循环，发生在你自己的边界内。
-          </p>
+          </ScrollReveal>
         </div>
         <ol className="journey-list">
-          {journey.map((item) => (
-            <li key={item.number}>
+          {journey.map((item, index) => (
+            <ScrollReveal as="li" delay={180 + index * 70} key={item.number}>
               <span>{item.number}</span>
               <div>
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
               </div>
-            </li>
+            </ScrollReveal>
           ))}
         </ol>
-        <div className="journey-footer">
+        <ScrollReveal className="journey-footer">
           <span>YOUR DATA</span>
           <i />
           <span>YOUR KNOWLEDGE</span>
           <i />
           <span>YOUR AI</span>
-        </div>
-      </ScrollReveal>
+        </ScrollReveal>
+      </section>
 
-      <ScrollReveal as="section" className="client-band" id="clients">
+      <section className="client-band" id="clients">
         <div className="client-band__intro">
-          <SectionLabel>YOUR AI, NOT OURS</SectionLabel>
-          <h2>
-            不管是哪一款 AI，
-            <span>知识都不用搬家。</span>
-          </h2>
+          <ScrollReveal revealEarly>
+            <SectionLabel>YOUR AI, NOT OURS</SectionLabel>
+            <h2>
+              不管是哪一款 AI，
+              <span>知识都不用搬家。</span>
+            </h2>
+          </ScrollReveal>
         </div>
         <div className="client-band__body">
-          {aiClients.map((group) => (
-            <div className="client-group" key={group.label}>
+          {aiClients.map((group, index) => (
+            <ScrollReveal className="client-group" delay={180 + index * 90} key={group.label}>
               <p className="client-group__label">{group.label}</p>
               <ul>
                 {group.items.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
-            </div>
+            </ScrollReveal>
           ))}
-          <p>
+          <ScrollReveal as="p" delay={180}>
             接入方式遵循通用的开放标准，所以新出的客户端、或者企业自己搭的 AI，都不必等我们做适配。工具的寿命，不该决定知识资产的寿命。
-          </p>
+          </ScrollReveal>
         </div>
-      </ScrollReveal>
+      </section>
 
-      <ScrollReveal as="section" className="private-section" id="private-ai">
+      <section className="private-section" id="private-ai">
         <div className="private-intro">
-          <SectionLabel>PRIVATE BY DESIGN</SectionLabel>
-          <h2>
-            AI 的价值，
-            <span>始于可控。</span>
-          </h2>
-          <p>
+          <ScrollReveal className="private-intro__heading" revealEarly>
+            <SectionLabel>PRIVATE BY DESIGN</SectionLabel>
+            <h2>
+              AI 的价值，
+              <span>始于可控。</span>
+            </h2>
+          </ScrollReveal>
+          <ScrollReveal as="p" delay={120}>
             真实的企业 AI，不该以牺牲数据边界为代价。KnowVeil 让安全不是一个附加项，而是产品的形状本身。
-          </p>
-          <div className="private-seal">
+          </ScrollReveal>
+          <ScrollReveal className="private-seal" delay={180}>
             <BrandMark />
             <span>PRIVATE AI<br />FOR ENTERPRISE</span>
-          </div>
+          </ScrollReveal>
         </div>
         <div className="private-list">
-          {privatePoints.map((point) => (
-            <article key={point.number}>
+          {privatePoints.map((point, index) => (
+            <ScrollReveal as="article" delay={180 + index * 70} key={point.number}>
               <span>{point.number}</span>
               <div>
                 <h3>{point.title}</h3>
                 <p>{point.text}</p>
               </div>
-            </article>
+            </ScrollReveal>
           ))}
         </div>
-      </ScrollReveal>
+      </section>
 
-      <ScrollReveal as="section" className="contact-section" id="contact">
+      <section className="contact-section" id="contact">
         <div className="contact-orbit contact-orbit--one" />
         <div className="contact-orbit contact-orbit--two" />
-        <SectionLabel>START WITH ONE REAL SCENARIO</SectionLabel>
-        <h2>
+        <ScrollReveal revealEarly>
+          <SectionLabel>START WITH ONE REAL SCENARIO</SectionLabel>
+        </ScrollReveal>
+        <ScrollReveal as="h2" delay={80} revealEarly>
           让下一次业务经验，
           <span>成为全组织的能力。</span>
-        </h2>
-        <p>从一个值得做的场景开始，一起构建企业自己的私有化 AI 路径。</p>
-        <a className="button button--light" href="mailto:hello@knova.ai?subject=KnowVeil%20方案咨询">
+        </ScrollReveal>
+        <ScrollReveal as="p" delay={140}>
+          从一个值得做的场景开始，一起构建企业自己的私有化 AI 路径。
+        </ScrollReveal>
+        <ScrollReveal
+          as="a"
+          className="button button--light"
+          delay={200}
+          href="mailto:hello@knova.ai?subject=KnowVeil%20方案咨询"
+        >
           预约方案沟通
           <Arrow />
-        </a>
-        <small>hello@knova.ai</small>
-      </ScrollReveal>
+        </ScrollReveal>
+        <ScrollReveal as="small" delay={260}>hello@knova.ai</ScrollReveal>
+      </section>
     </main>
   )
 }
