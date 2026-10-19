@@ -134,6 +134,7 @@ button {
   background: transparent;
   color: #575757;
   font-size: 13px;
+  font-weight: 600;
   line-height: 1.4;
   cursor: pointer;
   transition: color 180ms ease;
