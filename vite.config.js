@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 
-/** GitHub Pages project site; keep the repository base path unchanged. */
+/** GitHub Pages project site: https://jshiu0915.github.io/KnowVeil/ */
 export default defineConfig(({ command }) => ({
-  base: command === 'build' ? '/Knova/' : '/',
+  base: command === 'build' ? '/KnowVeil/' : '/',
 }))
