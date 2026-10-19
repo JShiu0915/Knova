@@ -197,6 +197,22 @@ const aiClients = [
   },
 ]
 
+const aiToolCards = [
+  { name: 'Claude', logo: 'claude.svg' },
+  { name: 'Codex', logo: 'codex.svg' },
+  { name: 'Cursor', logo: 'cursor.svg' },
+  { name: 'CodeBuddy', logo: 'codebuddy.svg' },
+  { name: 'Cline', logo: 'cline.svg' },
+  { name: 'Kilo Code', logo: 'kilocode.svg' },
+  { name: 'OpenCode', logo: 'opencode.svg' },
+  { name: 'Cherry Studio', logo: 'cherrystudio.svg' },
+  { name: 'OpenClaw', logo: 'openclaw.svg' },
+  { name: 'Hermes Agent', logo: 'hermesagent.svg' },
+  { name: 'MiMo Code', logo: 'mimo.svg' },
+  { name: 'Qwen Code', logo: 'qwen.svg' },
+  { name: '你的企业 AI 客户端', enterprise: true },
+]
+
 function Arrow({ size = 17 }) {
   return (
     <svg
@@ -872,6 +888,43 @@ function HomePage({ navigate }) {
           <i />
           <span>YOUR AI</span>
         </ScrollReveal>
+      </section>
+
+      <section className="ai-tools-wall" aria-labelledby="ai-tools-heading">
+        <ScrollReveal className="ai-tools-wall__heading" revealEarly>
+          <h2 id="ai-tools-heading">
+            用你已经在用的 AI 工具，
+            <span>接入企业自己的知识。</span>
+          </h2>
+        </ScrollReveal>
+        <div className="ai-tools-wall__grid">
+          {aiToolCards.map((tool, index) => (
+            <ScrollReveal
+              as="article"
+              className={tool.enterprise ? 'ai-tool-card ai-tool-card--enterprise' : 'ai-tool-card'}
+              delay={140 + (index % 4) * 60}
+              key={tool.name}
+            >
+              {tool.enterprise ? (
+                <span className="ai-tool-card__logo ai-tool-card__logo--enterprise" aria-hidden="true">
+                  +
+                </span>
+              ) : (
+                <span className="ai-tool-card__logo" aria-hidden="true">
+                  <img
+                    src={publicAsset(`/images/ai-clients/${tool.logo}`)}
+                    alt=""
+                    width="48"
+                    height="48"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
+              )}
+              <span className="ai-tool-card__name">{tool.name}</span>
+            </ScrollReveal>
+          ))}
+        </div>
       </section>
 
       <section className="client-band" id="clients">

@@ -2990,6 +2990,124 @@ button {
   line-height: 1.85;
 }
 
+/* ---------------- AI 工具兼容墙 ---------------- */
+.ai-tools-wall {
+  width: min(1280px, calc(100% - 80px));
+  margin: 0 auto;
+  padding: 0 0 148px;
+  border-top: 1px solid #e0e0da;
+  text-align: center;
+}
+
+.ai-tools-wall__heading {
+  padding-top: 112px;
+}
+
+.ai-tools-wall h2 {
+  max-width: 900px;
+  margin: 0 auto;
+  color: #1b1b19;
+  font-size: clamp(2.15rem, 3.8vw, 3.8rem);
+  font-weight: 570;
+  letter-spacing: -0.08em;
+  line-height: 1.14;
+}
+
+.ai-tools-wall h2 span {
+  display: block;
+  color: #318c68;
+}
+
+.ai-tools-wall__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 1040px;
+  margin: 58px auto 0;
+}
+
+.ai-tool-card {
+  display: flex;
+  min-height: 92px;
+  align-items: center;
+  gap: 15px;
+  padding: 18px 20px;
+  border: 1px solid #e0e1db;
+  border-radius: 10px;
+  background: #fff;
+  color: #252524;
+  text-align: left;
+}
+
+.ai-tool-card.scroll-reveal {
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-delay, 0ms),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-delay, 0ms),
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.ai-tool-card__logo {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  place-items: center;
+  border: 1px solid #e7e8e2;
+  border-radius: 9px;
+  background: #f7f8f4;
+}
+
+.ai-tool-card__logo img {
+  display: block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.ai-tool-card__name {
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+.ai-tool-card--enterprise {
+  border-style: dashed;
+  border-color: #a9cbb8;
+  background: #f7fbf6;
+  color: #176343;
+}
+
+.ai-tool-card__logo--enterprise {
+  border-style: dashed;
+  border-color: #a9cbb8;
+  background: transparent;
+  color: #318c68;
+  font-size: 25px;
+  font-weight: 350;
+  line-height: 1;
+}
+
+.ai-tool-card--enterprise .ai-tool-card__name {
+  color: #176343;
+}
+
+@media (hover: hover) {
+  .ai-tool-card:hover {
+    border-color: #accdbb;
+    background: #f5faf4;
+    box-shadow: 0 12px 28px rgba(33, 82, 57, 0.08);
+  }
+
+  .ai-tool-card--enterprise:hover {
+    border-color: #78a98e;
+    background: #edf7ed;
+  }
+}
+
 @media (max-width: 1000px) {
   .shared-section,
   .client-band {
@@ -3001,6 +3119,18 @@ button {
   .shared-intro > p,
   .client-band__intro h2 {
     max-width: 560px;
+  }
+
+  .ai-tools-wall {
+    padding-bottom: 112px;
+  }
+
+  .ai-tools-wall__heading {
+    padding-top: 96px;
+  }
+
+  .ai-tools-wall__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -3032,6 +3162,48 @@ button {
   .client-group li {
     padding: 9px 13px;
     font-size: 12px;
+  }
+
+  .ai-tools-wall {
+    width: calc(100% - 40px);
+    padding-bottom: 82px;
+  }
+
+  .ai-tools-wall__heading {
+    padding-top: 74px;
+  }
+
+  .ai-tools-wall h2 {
+    font-size: clamp(1.9rem, 7.6vw, 2.55rem);
+  }
+
+  .ai-tools-wall__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 36px;
+  }
+
+  .ai-tool-card {
+    min-height: 76px;
+    gap: 9px;
+    padding: 13px 12px;
+    border-radius: 8px;
+  }
+
+  .ai-tool-card__logo {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+    border-radius: 7px;
+  }
+
+  .ai-tool-card__logo img {
+    width: 21px;
+    height: 21px;
+  }
+
+  .ai-tool-card__name {
+    font-size: 11px;
   }
 }
 
