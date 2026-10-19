@@ -5,7 +5,7 @@
  */
 export const BRAND = {
   name: 'KnowVeil',
-  email: 'hello@knova.ai',
+  email: 'hello@knowveil.ai',
   tagline: '知识有据，能力有章。',
   claim: '让 AI 温故，让组织知新。知识不出企业的门，资产越用越厚。',
   kicker: 'Scale up knowledge through use',

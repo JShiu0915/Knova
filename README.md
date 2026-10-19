@@ -1,6 +1,6 @@
-# Knova Official Website
+# KnowVeil Official Website
 
-Knova 品牌官网首版，聚焦企业私有化 AI、一体化知识资产与两个核心产品：
+KnowVeil 品牌官网首版，聚焦企业私有化 AI、一体化知识资产与两个核心产品：
 
 - **SkillNavigator**：将专家经验沉淀为可治理、可复用的 AI Skill
 - **Knode**：在企业本地完成可信知识管理、检索与问答
@@ -18,4 +18,4 @@ npm run dev
 npm run build
 ```
 
-页面文案、产品介绍和咨询邮箱均集中在 `src/App.jsx`，品牌视觉与响应式样式位于 `src/styles.css`。
+品牌名称、口号和咨询邮箱集中在 `src/brand.js`；页面内容位于 `src/App.jsx`，品牌视觉与响应式样式位于 `src/styles.css`。

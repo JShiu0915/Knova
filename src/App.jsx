@@ -1001,12 +1001,12 @@ function HomePage({ navigate }) {
           as="a"
           className="button button--light"
           delay={200}
-          href="mailto:hello@knova.ai?subject=KnowVeil%20方案咨询"
+          href={`mailto:${BRAND.email}?subject=KnowVeil%20方案咨询`}
         >
           预约方案沟通
           <Arrow />
         </ScrollReveal>
-        <ScrollReveal as="small" delay={260}>hello@knova.ai</ScrollReveal>
+        <ScrollReveal as="small" delay={260}>{BRAND.email}</ScrollReveal>
       </section>
     </main>
   )
@@ -1032,7 +1032,7 @@ function ProductDetailPage({ product }) {
                   查看核心能力
                   <Arrow />
                 </a>
-                <a className="text-action" href="mailto:hello@knova.ai?subject=KnowVeil%20方案咨询">
+                <a className="text-action" href={`mailto:${BRAND.email}?subject=KnowVeil%20方案咨询`}>
                   预约方案沟通
                   <Arrow size={15} />
                 </a>
@@ -1095,7 +1095,7 @@ function ProductDetailPage({ product }) {
       <section className="product-page-cta">
         <p>{product.name.toUpperCase()} FOR PRIVATE AI</p>
         <h2>从一个真实场景，开始您的企业 AI 路径。</h2>
-        <a className="button button--dark" href="mailto:hello@knova.ai?subject=KnowVeil%20产品咨询">
+        <a className="button button--dark" href={`mailto:${BRAND.email}?subject=KnowVeil%20产品咨询`}>
           与 KnowVeil 团队沟通
           <Arrow />
         </a>
@@ -1134,7 +1134,7 @@ function DocsPage() {
               <ul>
                 {group.items.map((item) => (
                   <li key={item}>
-                    <a href="mailto:hello@knova.ai?subject=KnowVeil%20文档咨询">
+                    <a href={`mailto:${BRAND.email}?subject=KnowVeil%20文档咨询`}>
                       {item}
                       <Arrow size={14} />
                     </a>
@@ -1151,7 +1151,7 @@ function DocsPage() {
           <SectionLabel>NEED HELP?</SectionLabel>
           <h2>找不到需要的内容？</h2>
         </div>
-        <a className="button button--dark" href="mailto:hello@knova.ai?subject=KnowVeil%20文档咨询">
+        <a className="button button--dark" href={`mailto:${BRAND.email}?subject=KnowVeil%20文档咨询`}>
           联系我们
           <Arrow />
         </a>
@@ -1166,8 +1166,8 @@ function SiteFooter({ navigate }) {
       <div className="footer-top">
         <Brand navigate={navigate} />
         <p>{BRAND.tagline}</p>
-        <a href="mailto:hello@knova.ai">
-          hello@knova.ai
+        <a href={`mailto:${BRAND.email}`}>
+          {BRAND.email}
           <Arrow size={15} />
         </a>
       </div>
@@ -1175,7 +1175,7 @@ function SiteFooter({ navigate }) {
         <AppLink to="/" navigate={navigate}>首页</AppLink>
         <AppLink to={productCards[0].route} navigate={navigate}>产品</AppLink>
         <AppLink to="/docs" navigate={navigate}>文档</AppLink>
-        <a href="mailto:hello@knova.ai">联系我们</a>
+        <a href={`mailto:${BRAND.email}`}>联系我们</a>
       </div>
       <div className="footer-bottom">
         <span>
