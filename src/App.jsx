@@ -38,6 +38,16 @@ const productPreviewImages = {
     alt: 'SkillNavigator 产品界面截图',
     heroFile: 'public/images/products/skillnavigator-hero.webp',
     cardFile: 'public/images/products/skillnavigator-card.webp',
+    heroSlides: [
+      {
+        src: '/images/products/skillnavigator-hero.webp',
+        alt: 'SkillNavigator 首页示例图',
+      },
+      {
+        kind: 'sketch',
+        alt: 'SkillNavigator 能力库示例图',
+      },
+    ],
   },
   knode: {
     heroSrc: '', // '/images/products/knode-hero.webp'
@@ -228,6 +238,26 @@ function Arrow({ size = 17 }) {
     >
       <path d="M5 19 19 5" />
       <path d="M8 5h11v11" />
+    </svg>
+  )
+}
+
+function CarouselArrow({ direction }) {
+  const isPrevious = direction === 'previous'
+
+  return (
+    <svg
+      aria-hidden="true"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d={isPrevious ? 'm14 5-7 7 7 7' : 'm10 5 7 7-7 7'} />
     </svg>
   )
 }
@@ -423,6 +453,10 @@ function ProductPreview({ type, variant = 'card' }) {
   const fileHint = variant === 'hero' ? preview.heroFile : preview.cardFile
   const [loadError, setLoadError] = useState(false)
 
+  if (variant === 'hero' && preview.heroSlides?.length > 1) {
+    return <ProductPreviewCarousel type={type} slides={preview.heroSlides} />
+  }
+
   if (resolvedSrc && !loadError) {
     return (
       <figure
@@ -457,6 +491,101 @@ function ProductPreview({ type, variant = 'card' }) {
   }
 
   return <ProductSketch type={type} />
+}
+
+function ProductPreviewCarousel({ type, slides: configuredSlides }) {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [unavailableSources, setUnavailableSources] = useState([])
+  const slides = configuredSlides.filter(
+    (slide) =>
+      slide.kind === 'sketch' || (slide.src && !unavailableSources.includes(slide.src)),
+  )
+  const slideCount = slides.length
+
+  if (!slideCount) {
+    return <ProductSketch type={type} />
+  }
+
+  const currentIndex = Math.min(activeIndex, slideCount - 1)
+  const stackedSlides = slides
+    .map((slide, index) => ({
+      slide,
+      depth: (index - currentIndex + slideCount) % slideCount,
+    }))
+    .filter(({ depth }) => depth < 3)
+  const changeSlide = (direction) => {
+    setActiveIndex((index) => (index + direction + slideCount) % slideCount)
+  }
+
+  const handleImageError = (src) => {
+    setUnavailableSources((sources) =>
+      sources.includes(src) ? sources : [...sources, src],
+    )
+    setActiveIndex(0)
+  }
+
+  return (
+    <div className={`product-page-hero__gallery product-page-hero__gallery--${type}`}>
+      <div className="product-page-hero__visual">
+        <figure
+          className={`product-preview product-preview--${type} product-preview--hero product-preview--carousel`}
+          aria-label={`${type === 'skill' ? 'SkillNavigator' : '产品'} 示例图轮播`}
+          aria-roledescription="carousel"
+        >
+          <div className="product-preview__carousel-stage">
+            {stackedSlides.map(({ slide, depth }) => {
+              const isActive = depth === 0
+
+              return (
+                <div
+                  className={`product-preview__carousel-slide product-preview__carousel-slide--depth-${depth}`}
+                  key={slide.src || slide.kind}
+                  aria-hidden={isActive ? undefined : true}
+                >
+                  {slide.kind === 'sketch' ? (
+                    <div
+                      className="product-preview__carousel-sketch"
+                      role={isActive ? 'img' : undefined}
+                      aria-label={isActive ? slide.alt : undefined}
+                    >
+                      <ProductSketch type={type} />
+                    </div>
+                  ) : (
+                    <img
+                      className="product-preview__image product-preview__image--carousel"
+                      src={publicAsset(slide.src)}
+                      alt={isActive ? slide.alt : ''}
+                      loading="eager"
+                      decoding="async"
+                      onError={() => handleImageError(slide.src)}
+                    />
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        </figure>
+      </div>
+      <div className="product-preview__carousel-controls">
+        <button
+          className="product-preview__carousel-control"
+          type="button"
+          onClick={() => changeSlide(-1)}
+          aria-label="查看上一张示例图"
+        >
+          <CarouselArrow direction="previous" />
+        </button>
+        <button
+          className="product-preview__carousel-control"
+          type="button"
+          onClick={() => changeSlide(1)}
+          aria-label="查看下一张示例图"
+        >
+          <CarouselArrow direction="next" />
+        </button>
+      </div>
+    </div>
+  )
 }
 
 function ProductSketch({ type }) {
@@ -1019,28 +1148,30 @@ function ProductDetailPage({ product }) {
     <main className={`product-page product-page--${product.type}`}>
       <section className="product-page-hero">
         <div className="product-page-hero__inner">
+          {product.type === 'skill' && (
+            <div className="product-page-hero__product-header">
+              <p className="product-page-hero__product-name">{product.name}</p>
+              <div className="product-page-hero__product-kind">
+                <SectionLabel>{product.category}</SectionLabel>
+              </div>
+            </div>
+          )}
           <div className="product-page-hero__grid">
             <div className="product-page-hero__copy">
-              <SectionLabel>{product.category}</SectionLabel>
+              {product.type !== 'skill' && <SectionLabel>{product.category}</SectionLabel>}
               <h1>
                 {detail.headline}
                 <span>{detail.highlight}</span>
               </h1>
               <p>{detail.intro}</p>
-              <div className="product-page-hero__actions">
-                <a className="button button--dark" href="#product-capabilities">
-                  查看核心能力
-                  <Arrow />
-                </a>
-                <a className="text-action" href={`mailto:${BRAND.email}?subject=KnowVeil%20方案咨询`}>
-                  预约方案沟通
-                  <Arrow size={15} />
-                </a>
-              </div>
             </div>
-            <div className="product-page-hero__visual">
+            {product.type === 'skill' ? (
               <ProductPreview type={product.type} variant="hero" />
-            </div>
+            ) : (
+              <div className="product-page-hero__visual">
+                <ProductPreview type={product.type} variant="hero" />
+              </div>
+            )}
           </div>
           <div className="product-page-notes">
             {detail.notes.map(([title, text], index) => (
