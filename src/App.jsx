@@ -44,8 +44,20 @@ const productPreviewImages = {
         alt: 'SkillNavigator 首页示例图',
       },
       {
-        kind: 'sketch',
-        alt: 'SkillNavigator 能力库示例图',
+        src: '/images/products/skills-marketplace.webp',
+        alt: 'SkillNavigator 公开 Skill 市场示例图',
+      },
+      {
+        src: '/images/products/creators.webp',
+        alt: 'SkillNavigator 创作者示例图',
+      },
+      {
+        src: '/images/products/leaderboard.webp',
+        alt: 'SkillNavigator 榜单示例图',
+      },
+      {
+        src: '/images/products/inspections.webp',
+        alt: 'SkillNavigator 审查示例图',
       },
     ],
   },
@@ -496,6 +508,7 @@ function ProductPreview({ type, variant = 'card' }) {
 function ProductPreviewCarousel({ type, slides: configuredSlides }) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [unavailableSources, setUnavailableSources] = useState([])
+  const [loadedSources, setLoadedSources] = useState(() => new Set())
   const slides = configuredSlides.filter(
     (slide) =>
       slide.kind === 'sketch' || (slide.src && !unavailableSources.includes(slide.src)),
@@ -513,8 +526,29 @@ function ProductPreviewCarousel({ type, slides: configuredSlides }) {
       depth: (index - currentIndex + slideCount) % slideCount,
     }))
     .filter(({ depth }) => depth < 3)
+  const activeSrc = slides[currentIndex]?.src
+  const foregroundReady = !activeSrc || loadedSources.has(activeSrc)
+  const visibleStackedSlides = stackedSlides.filter(
+    ({ depth }) => depth === 0 || foregroundReady,
+  )
   const changeSlide = (direction) => {
     setActiveIndex((index) => (index + direction + slideCount) % slideCount)
+  }
+
+  const markSlideLoaded = (src) => {
+    if (!src) {
+      return
+    }
+
+    setLoadedSources((sources) => {
+      if (sources.has(src)) {
+        return sources
+      }
+
+      const next = new Set(sources)
+      next.add(src)
+      return next
+    })
   }
 
   const handleImageError = (src) => {
@@ -533,7 +567,7 @@ function ProductPreviewCarousel({ type, slides: configuredSlides }) {
           aria-roledescription="carousel"
         >
           <div className="product-preview__carousel-stage">
-            {stackedSlides.map(({ slide, depth }) => {
+            {visibleStackedSlides.map(({ slide, depth }) => {
               const isActive = depth === 0
 
               return (
@@ -553,10 +587,16 @@ function ProductPreviewCarousel({ type, slides: configuredSlides }) {
                   ) : (
                     <img
                       className="product-preview__image product-preview__image--carousel"
+                      ref={(node) => {
+                        if (node?.complete && node.naturalWidth > 0) {
+                          markSlideLoaded(slide.src)
+                        }
+                      }}
                       src={publicAsset(slide.src)}
                       alt={isActive ? slide.alt : ''}
-                      loading="eager"
+                      loading={isActive ? 'eager' : 'lazy'}
                       decoding="async"
+                      onLoad={() => markSlideLoaded(slide.src)}
                       onError={() => handleImageError(slide.src)}
                     />
                   )}
