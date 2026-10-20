@@ -882,6 +882,13 @@ button {
   transform: translate(48px, -50%) scale(0.962);
 }
 
+.product-preview__carousel-slide--previous {
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-30px, -50%) scale(0.982);
+}
+
 .product-preview--carousel .product-preview__image {
   object-position: center;
 }

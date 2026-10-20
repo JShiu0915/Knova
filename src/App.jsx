@@ -521,11 +521,17 @@ function ProductPreviewCarousel({ type, slides: configuredSlides }) {
 
   const currentIndex = Math.min(activeIndex, slideCount - 1)
   const stackedSlides = slides
-    .map((slide, index) => ({
-      slide,
-      depth: (index - currentIndex + slideCount) % slideCount,
-    }))
-    .filter(({ depth }) => depth < 3)
+    .map((slide, index) => {
+      const forwardDepth = (index - currentIndex + slideCount) % slideCount
+      const isPrevious = slideCount > 2 && forwardDepth === slideCount - 1
+
+      return {
+        slide,
+        depth: isPrevious ? -1 : forwardDepth,
+        isPrevious,
+      }
+    })
+    .filter(({ depth }) => depth === -1 || depth < 3)
   const activeSrc = slides[currentIndex]?.src
   const foregroundReady = !activeSrc || loadedSources.has(activeSrc)
   const visibleStackedSlides = stackedSlides.filter(
@@ -567,12 +573,16 @@ function ProductPreviewCarousel({ type, slides: configuredSlides }) {
           aria-roledescription="carousel"
         >
           <div className="product-preview__carousel-stage">
-            {visibleStackedSlides.map(({ slide, depth }) => {
+            {visibleStackedSlides.map(({ slide, depth, isPrevious }) => {
               const isActive = depth === 0
 
               return (
                 <div
-                  className={`product-preview__carousel-slide product-preview__carousel-slide--depth-${depth}`}
+                  className={`product-preview__carousel-slide ${
+                    isPrevious
+                      ? 'product-preview__carousel-slide--previous'
+                      : `product-preview__carousel-slide--depth-${depth}`
+                  }`}
                   key={slide.src || slide.kind}
                   aria-hidden={isActive ? undefined : true}
                 >
