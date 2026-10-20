@@ -833,9 +833,9 @@ button {
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   isolation: isolate;
-  background: rgba(255, 255, 255, 0.32);
+  background: transparent;
 }
 
 .product-preview__carousel-stage {
@@ -844,7 +844,7 @@ button {
   width: 100%;
   min-height: 0;
   flex: 1;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .product-preview__carousel-slide {
@@ -855,10 +855,12 @@ button {
   height: auto;
   aspect-ratio: 2215 / 1396;
   overflow: hidden;
-  border: 1px solid rgba(26, 48, 31, 0.14);
+  border: 1px solid rgba(28, 48, 35, 0.12);
   border-radius: 12px;
-  background: #fbfffa;
-  box-shadow: 0 12px 24px rgba(31, 53, 36, 0.1);
+  background: transparent;
+  box-shadow:
+    0 12px 28px rgba(28, 48, 35, 0.08),
+    0 3px 8px rgba(28, 48, 35, 0.05);
   transform-origin: left center;
   transition: transform 360ms ease, opacity 260ms ease;
 }
@@ -904,9 +906,10 @@ button {
 
 .product-preview__carousel-controls {
   display: flex;
-  width: 100%;
+  width: calc(100% - 34px);
   min-height: 60px;
   flex: 0 0 60px;
+  align-self: flex-start;
   align-items: center;
   justify-content: center;
   gap: 28px;
@@ -1818,11 +1821,16 @@ button {
 }
 
 .product-page-hero__gallery > .product-page-hero__visual {
-  height: 468px;
+  height: 390px;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .product-page-hero__gallery .product-preview__carousel-controls {
-  margin-top: 14px;
+  margin-top: 8px;
 }
 
 .product-page-hero__visual {
@@ -2867,7 +2875,7 @@ button {
   }
 
   .product-page-hero__gallery > .product-page-hero__visual {
-    height: 370px;
+    height: 320px;
   }
 
   .product-page-hero__visual .product-sketch,
@@ -3010,7 +3018,7 @@ button {
   }
 
   .product-page-hero__gallery > .product-page-hero__visual {
-    height: 274px;
+    height: 245px;
   }
 
   .product-page-hero__visual .product-sketch,
